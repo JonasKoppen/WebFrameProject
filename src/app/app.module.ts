@@ -5,18 +5,20 @@ import { AppComponent } from './app.component';
 import {RouterModule} from '@angular/router';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
-      {path : "", redirectTo: "home", pathMatch: "full"},
+      {path : "", redirectTo: "404", pathMatch: "full"},
       {path: "404", component: PageNotFoundComponent},
       {path: "home", component : HomeComponent}
     ], {useHash:true}),
