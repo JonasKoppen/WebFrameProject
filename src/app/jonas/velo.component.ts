@@ -23,11 +23,11 @@ export class VeloComponent implements OnInit{
     
     ngOnInit(): void {
         this._svc.getStation().subscribe(result => this.stationCollection = result);    
-        this.dun;
+        this.dun();
     }
 
     dun() : void{
-        let station = this.stationCollection.VeloStaions;
+        let station = this.stationCollection.data;
         for(let i =0; i < station.length ; i++){
             console.log(station[i].point_lat);
         }

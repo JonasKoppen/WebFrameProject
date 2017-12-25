@@ -53,7 +53,7 @@ export interface IVeloStation {
 
 export interface IVeloCollection {
     paging: Paging;
-    VeloStaions: IVeloStation[];
+    data: IVeloStation[];
 }
 
 

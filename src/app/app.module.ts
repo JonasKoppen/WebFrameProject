@@ -24,7 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
-
       {path : "", redirectTo: "404", pathMatch: "full"},
       {path: "404", component: PageNotFoundComponent},
       {path: "home", component : HomeComponent},

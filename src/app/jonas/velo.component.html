@@ -1,13 +1,13 @@
 <agm-map 
     [latitude]="lat" 
     [longitude]="lng"
-    [zoom] = "10">
+    [zoom] = "10"
+    *ngIf="stationCollection">
 
     <agm-marker 
-        *ngFor="let station of stationCollection.VeloStaions"
+        *ngFor="let station of stationCollection.data"
         [point_lat]="station.lat"
-        [point_lng]="station.lng"
-        [label] = "1">
+        [point_lng]="station.lng">
     </agm-marker>
 
 </agm-map>
