@@ -4,6 +4,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { VeloService, IVeloStation, IVeloCollection } from '../services/velo.service';
 
 //API used: https://angular-maps.com/guides/getting-started/#setting-up-angular-google-maps
+//Google site: https://developers.google.com/maps/documentation/javascript/importing_data
 
 @Component({
 selector: 'app-velo',
