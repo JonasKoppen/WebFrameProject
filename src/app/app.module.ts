@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AgmCoreModule} from '@agm/core'
 import { VeloComponent } from './jonas/velo.component';
+import { VeloService } from './services/velo.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { VeloComponent } from './jonas/velo.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
 
@@ -32,7 +35,9 @@ import { VeloComponent } from './jonas/velo.component';
     })
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  providers: [
+    VeloService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
