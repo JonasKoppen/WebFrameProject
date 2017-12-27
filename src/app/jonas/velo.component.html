@@ -1,13 +1,13 @@
 <agm-map 
     [latitude]="lat" 
     [longitude]="lng"
-    [zoom] = "10"
-    *ngIf="stationCollection">
+    [zoom] = "10">
 
     <agm-marker 
-        *ngFor="let station of stationCollection.data"
-        [point_lat]="station.lat"
-        [point_lng]="station.lng">
+        *ngFor="let station of markers"
+        [latitude]="station.lat"
+        [longitude]="station.lng"
+        [label]="station.label">
     </agm-marker>
 
 </agm-map>

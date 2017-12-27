@@ -10,7 +10,7 @@ export class VeloService{
 
     getStation(): Observable<IVeloCollection>{
         return this._http.get<IVeloCollection>("http://datasets.antwerpen.be/v4/gis/velostation.json")
-        .do(data => { console.log(JSON.stringify(data)) }); //Test om te zien of de data wordt opgehaald
+        //.do(data => { console.log(JSON.stringify(data)) }); //Test om te zien of de data wordt opgehaald
     }
 
     stationInfo : IVeloCollection;
