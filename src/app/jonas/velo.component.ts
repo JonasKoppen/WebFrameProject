@@ -52,6 +52,7 @@ export class VeloComponent implements OnInit{
     extractData(lol : IVeloCollection){
         if(lol!= null)
         {
+
             this.collection = lol;
             var some = lol.data;
             this.markers = new Array(some.length);
@@ -59,6 +60,7 @@ export class VeloComponent implements OnInit{
             for(var i = 0; i < some.length; i++){
                 this.markers[i] = ({
                     id : i,
+
                     lat: parseFloat(some[i].point_lat),
                     lng: parseFloat(some[i].point_lng),
                     label: i.toString(),
@@ -150,8 +152,8 @@ export class VeloComponent implements OnInit{
       distance?:number;
   }
 
-class Station{
-    constructor(public id:number,
-        public lat:number,
-        public lng:number){}
-}
+    class Station{
+        constructor(public id:number,
+            public lat:number,
+            public lng:number){}
+    }

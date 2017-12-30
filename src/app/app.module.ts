@@ -10,6 +10,8 @@ import {AgmCoreModule} from '@agm/core'
 import { VeloComponent } from './jonas/velo.component';
 import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CarpoolComponent } from './carpool/carpool.component';
+import { CarpoolService } from './services/carpool.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     PageNotFoundComponent,
     HomeComponent,
     NavbarComponent,
-    VeloComponent
+    VeloComponent,
+    CarpoolComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
       {path : "", redirectTo: "404", pathMatch: "full"},
       {path: "404", component: PageNotFoundComponent},
       {path: "home", component : HomeComponent},
+      {path: "carpool", component : CarpoolComponent},
       {path: "velo", component: VeloComponent}
     ], {useHash:true}),
     AgmCoreModule.forRoot({
@@ -35,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
-    VeloService
+    VeloService,
+    CarpoolService
   ],
   bootstrap: [AppComponent]
 })

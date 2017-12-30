@@ -1,0 +1,36 @@
+<h1>test</h1>
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<agm-map [latitude]="lat" [longitude]="lng">
+    
+  <agm-marker
+  *ngFor="let carpool of markers"
+  [latitude]="carpool.lat"
+  [longitude]="carpool.lng"
+  [label]="carpool.label">
+  >
+
+</agm-marker>
+</agm-map>
+
+<div class="card" *ngIf="Carpool">
+    <div class="card-header">Carpoolparkings</div>
+    <div class="card-block">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>type</th>
+                    <th>naam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let carpool of Carpool.data">
+                   
+                    <td>{{carpool.point_lat}}</td>
+                    <td>{{carpool.point_lng}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
