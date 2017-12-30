@@ -15,13 +15,7 @@ export class CarpoolService{
 
     stationInfo : ICarpoolCollection;
 
-    getStationWithCache(): Observable<ICarpoolCollection>{
-        if(this.stationInfo)
-            return Observable.of(this.stationInfo);
-        else
-            return this._http.get<ICarpoolCollection>("http://datasets.antwerpen.be/v4/gis/carpoolparking.json")
-                .do(data => {this.stationInfo = data; console.log(JSON.stringify(data))})
-    }
+   
 }
 
     export interface Paging {
