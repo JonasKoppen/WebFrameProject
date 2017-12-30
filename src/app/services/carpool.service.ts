@@ -36,8 +36,8 @@ export class CarpoolService{
     export interface Datum {
         id: number;
         objectid: number;
-        point_lat: number;
-        point_lng: number;
+        point_lat: string;
+        point_lng: string;
         type: string;
         gisid: string;
         naam: string;

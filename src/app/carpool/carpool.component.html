@@ -5,16 +5,9 @@
 <agm-map [latitude]="lat" [longitude]="lng">
     
   <agm-marker
-<<<<<<< HEAD
-  *ngFor="let X of CarpoolLats"
-
-  [latitude]="X"
-  [longitude]="carpool.point_lng">
-=======
   *ngFor="let carpool of markers"
   [latitude]="carpool.lat"
   [longitude]="carpool.lng">
->>>>>>> 3e4d9faee2d187a764bd97736e43ebf349944f71
 
 </agm-marker>
 </agm-map>
