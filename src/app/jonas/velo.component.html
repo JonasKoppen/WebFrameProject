@@ -1,3 +1,4 @@
+<div class="container text-center">
 <agm-map 
     [latitude]="lat" 
     [longitude]="lng"
@@ -18,3 +19,28 @@
     </agm-marker>
 
 </agm-map>
+
+<!--Card-->
+<div class="card" >
+    <div class="card-header">Dichst bijzijnde veloStations</div>
+    <div class="card-block">
+      <table clas="table table-hover">
+        <thread>
+          <tr>
+            <th>ID</th>
+            <th>adres</th>
+            <th> </th>
+          </tr>
+        </thread>
+        <tbody *ngIf="dichtBij">
+          <tr *ngFor="let vertrek of dichtBij">
+              <td>{{vertrek.id}}</td>
+              <td>{{vertrek.label}}</td>
+              <td>{{vertrek.distance}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--/.Card-->
+</div>

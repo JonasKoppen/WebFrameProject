@@ -3,6 +3,7 @@ import {AgmCoreModule, MouseEvent} from "@agm/core"
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { VeloService, IVeloStation, IVeloCollection } from '../services/velo.service';
 import { Marker } from '@agm/core/services/google-maps-types';
+import {} from 'mathjs'
 //import { loadavg } from 'os';
 
 //API used: https://angular-maps.com/guides/getting-started/#setting-up-angular-google-maps
@@ -21,6 +22,7 @@ export class VeloComponent implements OnInit{
 
     collection : IVeloCollection;
     markers : marker[]
+    dichtBij: IVeloStation[]
 
     constructor(private _svc : VeloService){}
     
@@ -35,6 +37,7 @@ export class VeloComponent implements OnInit{
             var some = lol.data;
             this.markers = new Array(some.length);
             this.markers[0] = ({
+                id : -1,
                 lat: parseFloat(some[0].point_lat),
                 lng: parseFloat(some[0].point_lng),
                 label: "select",
@@ -43,6 +46,7 @@ export class VeloComponent implements OnInit{
             })
             for(var i = 0; i < some.length; i++){
                 this.markers[i+1] = ({
+                    id : i,
                     lat: parseFloat(some[i].point_lat),
                     lng: parseFloat(some[i].point_lng),
                     label: i.toString(),
@@ -64,20 +68,37 @@ export class VeloComponent implements OnInit{
 
     mapClicked($event: MouseEvent) {
         this.markers[0] = ({
-          lat: $event.coords.lat,
-          lng: $event.coords.lng,
-          draggable: true
+            id:-1,
+            lat: $event.coords.lat,
+            lng: $event.coords.lng,
+            draggable: true
         });
-      }
+        this.calcDichtBij();
+    }
+
+    calcDichtBij(){
+        this.dichtBij = Array(5);
+        this.dichtBij.sort()
+        var calculating = true;
+        for(var i =0; i< this.markers.length; i++){
+            this.markers[i].distance = Math.sqrt(Math.pow(this.markers[0].lat-this.markers[i].lat,2) + Math.pow(this.markers[0].lng-this.markers[i].lng,2));
+            console.log(this.markers[i].distance)
+        }
+    }
+
+
+
   }
   
   // just an interface for type safety.
   interface marker {
+      id:number;
       lat: number;
       lng: number;
       label?: string;
       draggable: boolean;
-      info?:string
+      info?:string;
+      distance?:number;
   }
 
 class Station{
