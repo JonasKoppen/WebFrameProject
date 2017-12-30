@@ -1,9 +1,22 @@
-<h1>test</h1>
+<div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
+        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+      </div>
 
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
-<agm-map [latitude]="lat" [longitude]="lng">
-    
+<agm-map [latitude]="lat" [longitude]="lng" [zoom] = "17">
+       
+  <agm-marker
+  
+  [latitude]="lat"
+  [longitude]="lng"
+  [iconUrl]="icon"
+  >
+</agm-marker>
+
   <agm-marker
   *ngFor="let carpool of markers"
   [latitude]="carpool.lat"
@@ -25,10 +38,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let carpool of Carpool.data">
+                <tr *ngFor="let carpool of Carpool.data" (click)="SetPosition(carpool.point_lat, carpool.point_lng)">
                    
-                    <td>{{carpool.point_lat}}</td>
-                    <td>{{carpool.point_lng}}</td>
+                    <td>{{carpool.type}}</td>
+                    <td>{{carpool.naam}}</td>
                 </tr>
             </tbody>
         </table>

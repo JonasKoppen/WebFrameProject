@@ -15,11 +15,11 @@ styleUrls: ['./carpool.component.scss']
 export class CarpoolComponent implements OnInit{
 
     private position;
-
-    lat: number;
-    lng: number;
+    icon = "/assets/location.png";
+    lat: number =  51.2194475;
+    lng: number =  4.4024643;
     location : any;
-
+    private _search : string;
     CarpoolLats : number[];
     CarpoolLngs : number[];
 
@@ -29,7 +29,13 @@ export class CarpoolComponent implements OnInit{
     constructor(private _svc : CarpoolService){
     }
 
-    
+    SetPosition(Lat : number, Lng : number){
+        console.log('setpos');
+        this.lat =5;
+        this.lng = Lng;
+        console.log(this.lat);
+        console.log(this.lng);
+    }
    
 
     ngOnInit(){
