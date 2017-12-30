@@ -19,6 +19,7 @@ export class VeloComponent implements OnInit{
     public lat: number;
     public lng: number;
     public zoom: number = 12;
+    icon = "/assets/location2.png";
 
     collection : IVeloCollection;
     markers : marker[]
