@@ -3,10 +3,11 @@
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
 <agm-map [latitude]="lat" [longitude]="lng">
-
+    
   <agm-marker
-  *ngFor="let carpool of Carpool.data"
-  [latitude]="carpool.point_lat"
+  *ngFor="let X of CarpoolLats"
+
+  [latitude]="X"
   [longitude]="carpool.point_lng">
 
 </agm-marker>

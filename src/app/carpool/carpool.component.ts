@@ -32,8 +32,6 @@ export class CarpoolComponent implements OnInit{
         for (var i = 0; i > this.Carpool.data.length -1; i++){
             this.CarpoolLats[i] = this.Carpool.data[i].point_lat;
             this.CarpoolLngs[i] = this.Carpool.data[i].point_lng;
-
-
         }
     }
 

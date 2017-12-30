@@ -74,8 +74,8 @@ export class VeloComponent implements OnInit{
       draggable: boolean;
   }
 
-class Station{
-    constructor(public id:number,
-        public lat:number,
-        public lng:number){}
-}
+    class Station{
+        constructor(public id:number,
+            public lat:number,
+            public lng:number){}
+    }
