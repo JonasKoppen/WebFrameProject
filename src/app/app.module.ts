@@ -10,6 +10,7 @@ import {AgmCoreModule} from '@agm/core'
 import { VeloComponent } from './jonas/velo.component';
 import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CarpoolService } from './viktor/services/carpool.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
-    VeloService
+    VeloService,
+    CarpoolService
   ],
   bootstrap: [AppComponent]
 })
