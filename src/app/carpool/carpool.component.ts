@@ -18,19 +18,43 @@ export class CarpoolComponent implements OnInit{
     lng: number =  4.4024643;
     
     Carpool : ICarpoolCollection;
+    markers : marker[];
 
     constructor(private _svc : CarpoolService){}
 
 
     ngOnInit(){
         this._svc.getCarpool()
-        .subscribe(result => this.Carpool = result);
+        .subscribe(result => this.extractData(result));
     }
 
-    extraData(extra : ICarpoolCollection){
-        
+    extractData(extra : ICarpoolCollection){
+        this.Carpool = extra;
+        this.markers = new Array(this.Carpool.data.length);
+        this.markers[0] = ({
+            lat: parseFloat(this.Carpool.data[0].point_lat),
+            lng: parseFloat(this.Carpool.data[0].point_lng),
+            label: "A",
+            draggable: true
+        })
+        for(var i = 1; i < this.Carpool.data.length; i++){
+            this.markers[i] = ({
+                lat: parseFloat(this.Carpool.data[i].point_lat),
+                lng: parseFloat(this.Carpool.data[i].point_lng),
+                label: i.toString(),
+                draggable: true
+            })
+        }
+        console.log(this.markers)
     }
 
 
 
+}
+
+interface marker {
+    lat: number;
+    lng: number;
+    label?: string;
+    draggable: boolean;
 }
