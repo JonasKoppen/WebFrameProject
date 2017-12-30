@@ -1,25 +1,24 @@
 <div class="container text-center">
-<agm-map 
-    [latitude]="lat" 
-    [longitude]="lng"
-    [zoom] = "zoom"
-    (mapClick)="mapClicked($event)">
+    <agm-map 
+        [latitude]="lat" 
+        [longitude]="lng"
+        [zoom] = "zoom"
+        (mapClick)="mapClicked($event)">
 
-    <agm-marker 
-        *ngFor="let station of markers"
-        [latitude]="station.lat"
-        [longitude]="station.lng"
-        [label]="station.label"
-        [markerDraggable]="station.draggable"
-        (markerClick)="clickedMarker(station.label)">
-    
-        <agm-info-window>
-            <strong>{{station.info}}</strong>
-          </agm-info-window>
-    </agm-marker>
+        <agm-marker 
+            *ngFor="let station of markers"
+            [latitude]="station.lat"
+            [longitude]="station.lng"
+            [label]="station.label"
+            [markerDraggable]="station.draggable"
+            (markerClick)="clickedMarker(station.label)">
+        
+            <agm-info-window>
+                <strong>{{station.info}}</strong>
+            </agm-info-window>
+        </agm-marker>
 
-</agm-map>
-
+    </agm-map>
 <!--Card-->
 <div class="card" >
     <div class="card-header">Dichst bijzijnde veloStations</div>
@@ -35,8 +34,7 @@
         <tbody *ngIf="dichtBij">
           <tr *ngFor="let vertrek of dichtBij">
               <td>{{vertrek.id}}</td>
-              <td>{{vertrek.label}}</td>
-              <td>{{vertrek.distance}}</td>
+              <td>{{vertrek.info}}</td>
           </tr>
         </tbody>
       </table>

@@ -22,7 +22,7 @@ export class VeloComponent implements OnInit{
 
     collection : IVeloCollection;
     markers : marker[]
-    dichtBij: IVeloStation[]
+    dichtBij: marker[]
 
     constructor(private _svc : VeloService){}
     
@@ -84,6 +84,19 @@ export class VeloComponent implements OnInit{
             this.markers[i].distance = Math.sqrt(Math.pow(this.markers[0].lat-this.markers[i].lat,2) + Math.pow(this.markers[0].lng-this.markers[i].lng,2));
             console.log(this.markers[i].distance)
         }
+        for(var i = 0; i<5; i++){
+            var tmp = 5.0;
+            var tmpId = -1;
+            for(var j =1; j < this.markers.length;j++){
+                if(tmp > this.markers[j].distance){
+                    tmp = this.markers[j].distance;
+                    tmpId = j;
+                }
+            }
+            this.dichtBij[i] = this.markers[tmpId]
+            this.markers[tmpId].distance = 15;
+        }
+        console.log(this.dichtBij)
     }
 
 
