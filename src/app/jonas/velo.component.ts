@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AgmCoreModule} from "@agm/core"
+import {AgmCoreModule, MouseEvent} from "@agm/core"
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { VeloService, IVeloStation, IVeloCollection } from '../services/velo.service';
 import { Marker } from '@agm/core/services/google-maps-types';
@@ -20,7 +20,7 @@ export class VeloComponent implements OnInit{
     public zoom: number = 15;
 
     collection : IVeloCollection;
-    coll : marker[]
+    markers : marker[]
 
     constructor(private _svc : VeloService){}
     
@@ -32,16 +32,17 @@ export class VeloComponent implements OnInit{
         if(lol!= null)
         {
             this.collection = lol;
-            var some = lol.data;        
-            this.markers.push({
-                lat: parseFloat(some[0].point_lat)+0.0005,
+            var some = lol.data;
+            this.markers = new Array(some.length);
+            this.markers[0] = ({
+                lat: parseFloat(some[0].point_lat),
                 lng: parseFloat(some[0].point_lng),
-                label: '-1',
-                draggable: true
-            });
-            this.coll = new Array(some.length);
-            for(var i = 1; i < some.length-1; i++){
-                this.markers.push({
+                label: "select",
+                draggable: true,
+                info:"place me"
+            })
+            for(var i = 0; i < some.length; i++){
+                this.markers[i+1] = ({
                     lat: parseFloat(some[i].point_lat),
                     lng: parseFloat(some[i].point_lng),
                     label: i.toString(),
@@ -50,30 +51,24 @@ export class VeloComponent implements OnInit{
                 })
             }
         }
-        else
-        {
-            console.log("empty bullshit");
-        }
        
     }
 
     clickedMarker(iput :  string)
     {
-        var id = parseInt(iput);
+        var id = parseInt(iput) -1;
         console.log(iput);
         console.log(this.collection.data[id])
         
     }
 
-    markers: marker[] = [
-        {
-            lat: 51.673858,
-            lng: 7.815982,
-            label: 'A',
-            draggable: true,
-            info:"hi"
-        }
-    ]
+    mapClicked($event: MouseEvent) {
+        this.markers[0] = ({
+          lat: $event.coords.lat,
+          lng: $event.coords.lng,
+          draggable: true
+        });
+      }
   }
   
   // just an interface for type safety.
