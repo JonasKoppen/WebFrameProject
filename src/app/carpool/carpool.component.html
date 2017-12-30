@@ -7,7 +7,9 @@
   <agm-marker
   *ngFor="let carpool of markers"
   [latitude]="carpool.lat"
-  [longitude]="carpool.lng">
+  [longitude]="carpool.lng"
+  [label]="carpool.label">
+  >
 
 </agm-marker>
 </agm-map>

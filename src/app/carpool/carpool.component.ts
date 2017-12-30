@@ -14,21 +14,40 @@ styleUrls: ['./carpool.component.scss']
 }) 
 export class CarpoolComponent implements OnInit{
 
-    lat: number =  51.2194475;
-    lng: number =  4.4024643;
-    
+    private position;
+
+    lat: number;
+    lng: number;
+    location : any;
+
     CarpoolLats : number[];
     CarpoolLngs : number[];
 
     Carpool : ICarpoolCollection;
     markers : marker[];
 
-    constructor(private _svc : CarpoolService){}
+    constructor(private _svc : CarpoolService){
+    }
 
+    
+   
 
     ngOnInit(){
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(position => {
+              this.location = position.coords;
+              this.lat = position.coords.latitude;
+              this.lng = position.coords.longitude;
+              console.log(position.coords); 
+              console.log(this.lat);
+              console.log(this.lng);
+            });
+         }
+
         this._svc.getCarpool()
         .subscribe(result => this.extractData(result));
+
+        
     }
 
     extractData(extra : ICarpoolCollection){
@@ -48,8 +67,10 @@ export class CarpoolComponent implements OnInit{
                 draggable: true
             })
         }
-        console.log(this.markers)
+       
     }
+
+   
 
     
 
