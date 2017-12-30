@@ -29,8 +29,12 @@ export class CarpoolComponent implements OnInit{
     constructor(private _svc : CarpoolService){
     }
 
-    SetPosition(){
-        console.log("setpos");
+    SetPosition(Lat : number, Lng : number){
+        console.log('setpos');
+        this.lat =5;
+        this.lng = Lng;
+        console.log(this.lat);
+        console.log(this.lng);
     }
    
 

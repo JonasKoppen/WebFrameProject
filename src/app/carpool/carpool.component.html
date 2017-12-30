@@ -38,10 +38,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let carpool of Carpool.data" onclick="SetPosition()">
+                <tr *ngFor="let carpool of Carpool.data" (click)="SetPosition(carpool.point_lat, carpool.point_lng)">
                    
-                    <td>{{carpool.point_lat}}</td>
-                    <td>{{carpool.point_lng}}</td>
+                    <td>{{carpool.type}}</td>
+                    <td>{{carpool.naam}}</td>
                 </tr>
             </tbody>
         </table>
