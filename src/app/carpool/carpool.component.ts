@@ -17,6 +17,9 @@ export class CarpoolComponent implements OnInit{
     lat: number =  51.2194475;
     lng: number =  4.4024643;
     
+    CarpoolLats : number[];
+    CarpoolLngs : number[];
+
     Carpool : ICarpoolCollection;
 
     constructor(private _svc : CarpoolService){}
@@ -25,11 +28,16 @@ export class CarpoolComponent implements OnInit{
     ngOnInit(){
         this._svc.getCarpool()
         .subscribe(result => this.Carpool = result);
+
+        for (var i = 0; i > this.Carpool.data.length -1; i++){
+            this.CarpoolLats[i] = this.Carpool.data[i].point_lat;
+            this.CarpoolLngs[i] = this.Carpool.data[i].point_lng;
+
+
+        }
     }
 
-    extraData(extra : ICarpoolCollection){
-        
-    }
+    
 
 
 
