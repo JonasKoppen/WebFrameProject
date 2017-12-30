@@ -16,9 +16,9 @@ styleUrls: ['./velo.component.scss']
 }) 
 export class VeloComponent implements OnInit{
     title = 'velo';
-    public lat: number = 51.215410;
-    public lng: number = 4.414489;
-    public zoom: number = 15;
+    public lat: number;
+    public lng: number;
+    public zoom: number = 12;
 
     collection : IVeloCollection;
     markers : marker[]
@@ -39,6 +39,7 @@ export class VeloComponent implements OnInit{
             draggable: true,
             info:"place me"
         })
+
         this.markers2[1] = ({
             id : 1,
             lat: 51.215410,
@@ -47,6 +48,7 @@ export class VeloComponent implements OnInit{
             draggable: true,
             info:"place me"
         })
+
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
               this.markers2[0].lat = position.coords.latitude;
@@ -55,17 +57,20 @@ export class VeloComponent implements OnInit{
               console.log(this.lat);
               console.log(this.lng);
             });
-         }
+        }
+
+        this.lat = this.markers2[0].lat
+        this.lng = this.markers2[0].lng   
+        this.calcDichtBij();
+        this.calcDichtBij2();                                                             
     }
 
     extractData(lol : IVeloCollection){
         if(lol!= null)
         {
-
             this.collection = lol;
             var some = lol.data;
             this.markers = new Array(some.length);
-            
             for(var i = 0; i < some.length; i++){
                 this.markers[i] = ({
                     id : i,

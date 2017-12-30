@@ -33,7 +33,8 @@
 <!--Card-->
 <div class="card" >
     <div class="card-header">Dichst bijzijnde veloStations</div>
-    <div class="card-block">
+    <div class="row">
+    <div class="card-block col-sm-6">
       <table clas="table table-hover">
         <thread>
           <tr>
@@ -50,7 +51,7 @@
         </tbody>
       </table>
     </div>
-    <div class="card-block">
+    <div class="card-block col-sm-6">
       <table clas="table table-hover">
         <thread>
           <tr>
@@ -59,7 +60,7 @@
             <th> </th>
           </tr>
         </thread>
-        <tbody *ngIf="dichtBij">
+        <tbody *ngIf="dichtBij2">
           <tr *ngFor="let vertrek of dichtBij2">
               <td>{{vertrek.id}}</td>
               <td>{{vertrek.info}}</td>
@@ -67,6 +68,7 @@
         </tbody>
       </table>
     </div>
+  </div>
   </div>
   <!--/.Card-->
 </div>
