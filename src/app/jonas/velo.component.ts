@@ -47,6 +47,15 @@ export class VeloComponent implements OnInit{
             draggable: true,
             info:"place me"
         })
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(position => {
+              this.markers2[0].lat = position.coords.latitude;
+              this.markers2[0].lng = position.coords.longitude;
+              console.log(position.coords); 
+              console.log(this.lat);
+              console.log(this.lng);
+            });
+         }
     }
 
     extractData(lol : IVeloCollection){
