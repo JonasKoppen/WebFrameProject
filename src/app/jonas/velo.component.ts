@@ -45,7 +45,8 @@ export class VeloComponent implements OnInit{
                     lat: parseFloat(some[i].point_lat),
                     lng: parseFloat(some[i].point_lng),
                     label: i.toString(),
-                    draggable: false
+                    draggable: false,
+                    info:"adres: "+some[i].straatnaam + " "+ some[i].huisnummer
                 })
             }
         }
@@ -69,7 +70,8 @@ export class VeloComponent implements OnInit{
             lat: 51.673858,
             lng: 7.815982,
             label: 'A',
-            draggable: true
+            draggable: true,
+            info:"hi"
         }
     ]
   }
@@ -80,6 +82,7 @@ export class VeloComponent implements OnInit{
       lng: number;
       label?: string;
       draggable: boolean;
+      info?:string
   }
 
 class Station{
