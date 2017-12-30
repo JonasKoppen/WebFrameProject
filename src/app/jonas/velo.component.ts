@@ -33,7 +33,7 @@ export class VeloComponent implements OnInit{
             var some = lol.data;        
             this.markers.push({
                 lat: parseFloat(some[0].point_lat),
-                lng: parseFloat(some[0].point_lng),
+                      lng: parseFloat(some[0].point_lng),
                 label: '1',
                 draggable: true
             });
