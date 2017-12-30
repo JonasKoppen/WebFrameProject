@@ -28,14 +28,6 @@ export class CarpoolComponent implements OnInit{
 
     ngOnInit(){
         this._svc.getCarpool()
-<<<<<<< HEAD
-        .subscribe(result => this.Carpool = result);
-
-        for (var i = 0; i > this.Carpool.data.length -1; i++){
-            this.CarpoolLats[i] = this.Carpool.data[i].point_lat;
-            this.CarpoolLngs[i] = this.Carpool.data[i].point_lng;
-        }
-=======
         .subscribe(result => this.extractData(result));
     }
 
@@ -57,7 +49,6 @@ export class CarpoolComponent implements OnInit{
             })
         }
         console.log(this.markers)
->>>>>>> 3e4d9faee2d187a764bd97736e43ebf349944f71
     }
 
     
