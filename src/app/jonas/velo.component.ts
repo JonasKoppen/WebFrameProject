@@ -22,12 +22,31 @@ export class VeloComponent implements OnInit{
 
     collection : IVeloCollection;
     markers : marker[]
+    markers2 : marker[]
     dichtBij: marker[]
+    dichtBij2: marker[]
 
     constructor(private _svc : VeloService){}
     
     ngOnInit(): void {
-        this._svc.getStation().subscribe(result => this.extractData(result));    
+        this._svc.getStation().subscribe(result => this.extractData(result)); 
+        this.markers2 = new Array(2);
+        this.markers2[0] = ({
+            id : 0,
+            lat: 51.215410,
+            lng: 4.414489,
+            label: "A",
+            draggable: true,
+            info:"place me"
+        })
+        this.markers2[1] = ({
+            id : 1,
+            lat: 51.215410,
+            lng: 4.414489,
+            label: "B",
+            draggable: true,
+            info:"place me"
+        })
     }
 
     extractData(lol : IVeloCollection){
@@ -36,16 +55,9 @@ export class VeloComponent implements OnInit{
             this.collection = lol;
             var some = lol.data;
             this.markers = new Array(some.length);
-            this.markers[0] = ({
-                id : -1,
-                lat: parseFloat(some[0].point_lat),
-                lng: parseFloat(some[0].point_lng),
-                label: "select",
-                draggable: true,
-                info:"place me"
-            })
+            
             for(var i = 0; i < some.length; i++){
-                this.markers[i+1] = ({
+                this.markers[i] = ({
                     id : i,
                     lat: parseFloat(some[i].point_lat),
                     lng: parseFloat(some[i].point_lng),
@@ -63,43 +75,67 @@ export class VeloComponent implements OnInit{
         var id = parseInt(iput) -1;
         console.log(iput);
         console.log(this.collection.data[id])
-        
     }
 
     mapClicked($event: MouseEvent) {
-        this.markers[0] = ({
-            id:-1,
-            lat: $event.coords.lat,
-            lng: $event.coords.lng,
-            draggable: true
-        });
+        this.markers2[0].lat = $event.coords.lat;
+        this.markers2[0].lng = $event.coords.lng;
         this.calcDichtBij();
+        this.calcDichtBij2();
     }
 
     calcDichtBij(){
+        var tmpMarkers = this.markers;
         this.dichtBij = Array(5);
         this.dichtBij.sort()
-        var calculating = true;
-        for(var i =0; i< this.markers.length; i++){
-            this.markers[i].distance = Math.sqrt(Math.pow(this.markers[0].lat-this.markers[i].lat,2) + Math.pow(this.markers[0].lng-this.markers[i].lng,2));
-            console.log(this.markers[i].distance)
+        for(var i =0; i< tmpMarkers.length; i++){
+            tmpMarkers[i].distance = Math.sqrt(Math.pow(this.markers2[0].lat-tmpMarkers[i].lat,2) + Math.pow(this.markers2[0].lng-tmpMarkers[i].lng,2));
+            console.log(tmpMarkers[i].distance)
         }
         for(var i = 0; i<5; i++){
             var tmp = 5.0;
             var tmpId = -1;
-            for(var j =1; j < this.markers.length;j++){
-                if(tmp > this.markers[j].distance){
-                    tmp = this.markers[j].distance;
+            for(var j =1; j < tmpMarkers.length;j++){
+                if(tmp > tmpMarkers[j].distance){
+                    tmp = tmpMarkers[j].distance;
                     tmpId = j;
                 }
             }
-            this.dichtBij[i] = this.markers[tmpId]
-            this.markers[tmpId].distance = 15;
+            this.dichtBij[i] = tmpMarkers[tmpId]
+            tmpMarkers[tmpId].distance = 15;
+        }
+        console.log(this.dichtBij)
+    }
+    calcDichtBij2(){
+        var tmpMarkers = this.markers;
+        this.dichtBij2 = Array(5);
+        this.dichtBij2.sort()
+        for(var i =0; i< tmpMarkers.length; i++){
+            tmpMarkers[i].distance = Math.sqrt(Math.pow(this.markers2[1].lat-tmpMarkers[i].lat,2) + Math.pow(this.markers2[1].lng-tmpMarkers[i].lng,2));
+            console.log(tmpMarkers[i].distance)
+        }
+        for(var i = 0; i<5; i++){
+            var tmp = 5.0;
+            var tmpId = -1;
+            for(var j =1; j < tmpMarkers.length;j++){
+                if(tmp > tmpMarkers[j].distance){
+                    tmp = tmpMarkers[j].distance;
+                    tmpId = j;
+                }
+            }
+            this.dichtBij2[i] = tmpMarkers[tmpId]
+            tmpMarkers[tmpId].distance = 15;
         }
         console.log(this.dichtBij)
     }
 
-
+    markerDragEnd(m: marker, $event: MouseEvent) {
+        console.log('dragEnd', m);
+        this.markers2[m.id].lat = $event.coords.lat;
+        this.markers2[m.id].lng = $event.coords.lng;
+        this.calcDichtBij();
+        this.calcDichtBij2();
+      }
 
   }
   
