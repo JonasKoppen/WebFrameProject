@@ -1,13 +1,19 @@
 <agm-map 
     [latitude]="lat" 
     [longitude]="lng"
-    [zoom] = "10">
+    [zoom] = "zoom">
 
     <agm-marker 
         *ngFor="let station of markers"
         [latitude]="station.lat"
         [longitude]="station.lng"
-        [label]="station.label">
+        [label]="station.label"
+        [markerDraggable]="station.draggable"
+        (markerClick)="clickedMarker(station.label)">
+    
+        <agm-info-window>
+            <strong>{{station.info}}</strong>
+          </agm-info-window>
     </agm-marker>
 
 </agm-map>
