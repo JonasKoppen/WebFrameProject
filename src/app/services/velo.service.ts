@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/do";
 import "rxjs/add/observable/of";
+import { element } from "protractor";
 
 @Injectable()
 export class VeloService{
@@ -15,12 +16,30 @@ export class VeloService{
 
     stationInfo : IVeloCollection;
 
+    markers : marker[]
+
     getStationWithCache(): Observable<IVeloCollection>{
         if(this.stationInfo)
             return Observable.of(this.stationInfo);
         else
             return this._http.get<IVeloCollection>("http://datasets.antwerpen.be/v4/gis/velostation.json")
                 .do(data => {this.stationInfo = data; console.log(JSON.stringify(data))})
+    }
+
+    set Markers(value : marker[]){
+        this.markers = value;
+    }
+
+    get Markers() : marker[]{
+        var markers = this.markers;
+        if(markers != null){
+            return this.markers;
+        }
+        else
+        {
+            return null
+        }
+        
     }
 }
 
@@ -54,6 +73,16 @@ export interface IVeloStation {
 export interface IVeloCollection {
     paging: Paging;
     data: IVeloStation[];
+}
+
+export interface marker {
+    id:number;
+    lat: number;
+    lng: number;
+    label?: string;
+    draggable: boolean;
+    info?:string;
+    distance?:number;
 }
 
 

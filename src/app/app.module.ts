@@ -7,11 +7,13 @@ import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AgmCoreModule} from '@agm/core'
-import { VeloComponent } from './jonas/velo.component';
+import { VeloMapComponent } from './jonas/veloMap/veloMap.component';
 import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CarpoolComponent } from './carpool/carpool.component';
 import { CarpoolService } from './services/carpool.service';
+import { VeloComponent } from './jonas/velo.component';
+import { VeloDataComponent } from './jonas/veloData/veloData.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,11 @@ import { CarpoolService } from './services/carpool.service';
     PageNotFoundComponent,
     HomeComponent,
     NavbarComponent,
-    VeloComponent,
-    CarpoolComponent
+    VeloMapComponent,
+    CarpoolComponent,
+    VeloDataComponent,
+    VeloMapComponent,
+    VeloComponent 
   ],
   imports: [
     BrowserModule,
