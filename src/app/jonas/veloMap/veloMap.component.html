@@ -1,35 +1,44 @@
-<div class="container text-center">
-    <agm-map 
-        [latitude]="lat" 
-        [longitude]="lng"
-        [zoom] = "zoom"
-        (mapClick)="mapClicked($event)">
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <agm-map 
+          [latitude]="lat" 
+          [longitude]="lng"
+          [zoom] = "zoom"
+          (mapClick)="mapClicked($event)">
+          <agm-marker 
+              [latitude]="markers2.lat"
+              [longitude]="markers2.lng"
+              [label]="markers2.label"
+              [markerDraggable]="markers2.draggable"
+              (markerClick)="clickedMarker(markers2.label)"
+              (dragEnd)="markerDragEnd(markers2, $event)"
+              [iconUrl]="icon">
+          </agm-marker>
 
-        <agm-marker 
-            *ngFor="let station of markers2"
-            [latitude]="station.lat"
-            [longitude]="station.lng"
-            [label]="station.label"
-            [markerDraggable]="station.draggable"
-            (markerClick)="clickedMarker(station.label)"
-            (dragEnd)="markerDragEnd(station, $event)"
-            [iconUrl]="icon">
-        </agm-marker>
+          <agm-marker 
+              *ngFor="let station of markers"
+              [latitude]="station.lat"
+              [longitude]="station.lng"
+              [label]="station.label"
+              (markerClick)="clickedMarker(station.label)">
+          
+              <agm-info-window>
+                  <strong>{{station.info}}</strong>
+              </agm-info-window>
+          </agm-marker>
 
-        <agm-marker 
-            *ngFor="let station of markers"
-            [latitude]="station.lat"
-            [longitude]="station.lng"
-            [label]="station.label"
-            (markerClick)="clickedMarker(station.label)">
-        
-            <agm-info-window>
-                <strong>{{station.info}}</strong>
-            </agm-info-window>
-        </agm-marker>
-
-    </agm-map>
+      </agm-map>
+    </div>
+    <div class="col-sm-4">
+        <app-weather></app-weather>
+        <br>
+        <app-veloData 
+        [dichtBij] = "dichtBij" 
+        [dichtBij2] = "dichtBij2"></app-veloData>
+    </div>
+  </div>
 </div>
 <!--
 

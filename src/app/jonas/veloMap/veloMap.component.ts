@@ -13,7 +13,8 @@ import { IVeloCollection, VeloService, marker } from '../../services/velo.servic
 @Component({
 selector: 'app-veloMap',
 templateUrl: './veloMap.component.html',
-styleUrls: ['./veloMap.component.scss']
+styleUrls: ['./veloMap.component.scss'],
+providers:[VeloService]
 }) 
 export class VeloMapComponent implements OnInit{
     title = 'veloMap';
@@ -24,16 +25,13 @@ export class VeloMapComponent implements OnInit{
 
     collection : IVeloCollection;
     markers : marker[]
-    markers2 : marker[]
+    markers2 : marker
     dichtBij: marker[]
     dichtBij2: marker[]
 
-    constructor(private _svc : VeloService){}
-    
-    ngOnInit(): void {
-        this._svc.getStation().subscribe(result => this.extractData(result)); 
-        this.markers2 = new Array(2);
-        this.markers2[0] = ({
+    constructor(private _svc : VeloService)
+    {
+        this.markers2 = ({
             id : 0,
             lat: 51.215410,
             lng: 4.414489,
@@ -41,30 +39,22 @@ export class VeloMapComponent implements OnInit{
             draggable: true,
             info:"place me"
         })
-
-        this.markers2[1] = ({
-            id : 1,
-            lat: 51.215410,
-            lng: 4.414489,
-            label: "B",
-            draggable: true,
-            info:"place me"
-        })
-        this._svc.Markers = this.markers2;
+    } 
+    
+    ngOnInit(): void {
+        this._svc.getStation().subscribe(result => this.extractData(result)); 
+        
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
-              this.markers2[0].lat = position.coords.latitude;
-              this.markers2[0].lng = position.coords.longitude;
+              this.markers2.lat = position.coords.latitude;
+              this.markers2.lng = position.coords.longitude;
               console.log(position.coords); 
               console.log(this.lat);
               console.log(this.lng);
             });
-
-        
         }
-
-        this.lat = this.markers2[0].lat
-        this.lng = this.markers2[0].lng                                                              
+        this.lat = this.markers2.lat
+        this.lng = this.markers2.lng                                                     
     }
 
     extractData(lol : IVeloCollection){
@@ -96,10 +86,9 @@ export class VeloMapComponent implements OnInit{
     }
 
     mapClicked($event: MouseEvent) {
-        this.markers2[0].lat = $event.coords.lat;
-        this.markers2[0].lng = $event.coords.lng;
+        this.markers2.lat = $event.coords.lat;
+        this.markers2.lng = $event.coords.lng;
         this.calcDichtBij();
-        this.calcDichtBij2();
     }
 
     calcDichtBij(){
@@ -107,7 +96,7 @@ export class VeloMapComponent implements OnInit{
         this.dichtBij = Array(5);
         this.dichtBij.sort()
         for(var i =0; i< tmpMarkers.length; i++){
-            tmpMarkers[i].distance = Math.sqrt(Math.pow(this.markers2[0].lat-tmpMarkers[i].lat,2) + Math.pow(this.markers2[0].lng-tmpMarkers[i].lng,2));
+            tmpMarkers[i].distance = Math.sqrt(Math.pow(this.markers2.lat-tmpMarkers[i].lat,2) + Math.pow(this.markers2.lng-tmpMarkers[i].lng,2));
             //console.log(tmpMarkers[i].distance)
         }
         for(var i = 0; i<5; i++){
@@ -124,46 +113,14 @@ export class VeloMapComponent implements OnInit{
         }
         //console.log(this.dichtBij)
     }
-    calcDichtBij2(){
-        var tmpMarkers = this.markers;
-        this.dichtBij2 = Array(5);
-        this.dichtBij2.sort()
-        for(var i =0; i< tmpMarkers.length; i++){
-            tmpMarkers[i].distance = Math.sqrt(Math.pow(this.markers2[1].lat-tmpMarkers[i].lat,2) + Math.pow(this.markers2[1].lng-tmpMarkers[i].lng,2));
-            //console.log(tmpMarkers[i].distance)
-        }
-        for(var i = 0; i<5; i++){
-            var tmp = 5.0;
-            var tmpId = -1;
-            for(var j =1; j < tmpMarkers.length;j++){
-                if(tmp > tmpMarkers[j].distance){
-                    tmp = tmpMarkers[j].distance;
-                    tmpId = j;
-                }
-            }
-            this.dichtBij2[i] = tmpMarkers[tmpId]
-            tmpMarkers[tmpId].distance = 15;
-        }
-        //console.log(this.dichtBij)
-        
-    }
 
     markerDragEnd(m: marker, $event: MouseEvent) {
         console.log('dragEnd', m);
-        this.markers2[m.id].lat = $event.coords.lat;
-        this.markers2[m.id].lng = $event.coords.lng;
+        this.markers2.lat = $event.coords.lat;
+        this.markers2.lng = $event.coords.lng;
         this.calcDichtBij();
-        this.calcDichtBij2();
-        this._svc.Markers = this.markers2;
-        VeloService.apply;
       }
 
   }
   
   // just an interface for type safety.
-
-    class Station{
-        constructor(public id:number,
-            public lat:number,
-            public lng:number){}
-    }

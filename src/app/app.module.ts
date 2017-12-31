@@ -14,6 +14,8 @@ import { CarpoolComponent } from './carpool/carpool.component';
 import { CarpoolService } from './services/carpool.service';
 import { VeloComponent } from './jonas/velo.component';
 import { VeloDataComponent } from './jonas/veloData/veloData.component';
+import { WeatherComponent } from './jonas/weather/weather.component';
+import { WeatherService } from './services/weather.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { VeloDataComponent } from './jonas/veloData/veloData.component';
     CarpoolComponent,
     VeloDataComponent,
     VeloMapComponent,
-    VeloComponent 
+    VeloComponent,
+    WeatherComponent 
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { VeloDataComponent } from './jonas/veloData/veloData.component';
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     VeloService,
-    CarpoolService
+    CarpoolService,
+    WeatherService
   ],
   bootstrap: [AppComponent]
 })
