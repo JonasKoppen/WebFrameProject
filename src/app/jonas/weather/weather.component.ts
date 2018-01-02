@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import * as mathjs from 'mathjs'
+import * as mathjs from 'mathjs';
 import { WeatherService, IWeatherResult } from '../../services/weather.service';
 
 interface IWeather{
