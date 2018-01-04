@@ -7,13 +7,14 @@
           <tr>
             <th>ID</th>
             <th>adres</th>
-            <th> </th>
+            <th>afstand (in meters)</th>
           </tr>
         </thread>
         <tbody>
           <tr *ngFor="let vertrek of dichtBij">
               <td>{{vertrek.id}}</td>
               <td>{{vertrek.info}}</td>
+              <td>{{vertrek.distance}}</td>
           </tr>
         </tbody>
       </table>

@@ -4,8 +4,9 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 import { Marker, google } from '@agm/core/services/google-maps-types';
 import {} from 'mathjs'
-import { IVeloCollection, VeloService, marker } from '../../services/velo.service';
+import { IVeloCollection, VeloService, marker, IVeloStation } from '../../services/velo.service';
 //import { loadavg } from 'os';
+import * as geolib from 'geolib'
 
 //API used: https://angular-maps.com/guides/getting-started/#setting-up-angular-google-maps
 //Google site: https://developers.google.com/maps/documentation/javascript/importing_data
@@ -28,6 +29,7 @@ export class VeloMapComponent implements OnInit{
     markers2 : marker
     dichtBij: marker[]
     dichtBij2: marker[]
+    test : IVeloStation[]
 
     constructor(private _svc : VeloService)
     {
@@ -63,10 +65,11 @@ export class VeloMapComponent implements OnInit{
             this.collection = lol;
             var some = lol.data;
             this.markers = new Array(some.length);
+            this.test = new Array(some.length)
             for(var i = 0; i < some.length; i++){
+                this.test[i] = some[i];
                 this.markers[i] = ({
                     id : i,
-
                     lat: parseFloat(some[i].point_lat),
                     lng: parseFloat(some[i].point_lng),
                     label: i.toString(),
@@ -92,24 +95,33 @@ export class VeloMapComponent implements OnInit{
     }
 
     calcDichtBij(){
-        var tmpMarkers = this.markers;
+        var tmpMarkers = this.markers.slice();
         this.dichtBij = Array(5);
         this.dichtBij.sort()
         for(var i =0; i< tmpMarkers.length; i++){
-            tmpMarkers[i].distance = Math.sqrt(Math.pow(this.markers2.lat-tmpMarkers[i].lat,2) + Math.pow(this.markers2.lng-tmpMarkers[i].lng,2));
-            //console.log(tmpMarkers[i].distance)
+            tmpMarkers[i].distance = geolib.getDistance(
+                {
+                    latitude: this.markers2.lat,
+                    longitude: this.markers2.lng
+                },
+                {
+                    latitude: tmpMarkers[i].lat,
+                    longitude: tmpMarkers[i].lng
+                }
+            )
+            console.log(tmpMarkers[i].distance)
         }
         for(var i = 0; i<5; i++){
-            var tmp = 5.0;
+            var tmp = -1;
             var tmpId = -1;
             for(var j =1; j < tmpMarkers.length;j++){
-                if(tmp > tmpMarkers[j].distance){
+                if((tmp > tmpMarkers[j].distance ||tmp == -1) && tmpMarkers[j].distance != -1){
                     tmp = tmpMarkers[j].distance;
                     tmpId = j;
                 }
             }
             this.dichtBij[i] = tmpMarkers[tmpId]
-            tmpMarkers[tmpId].distance = 15;
+            tmpMarkers.splice(tmpId,1)
         }
         //console.log(this.dichtBij)
     }
