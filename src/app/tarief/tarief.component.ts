@@ -17,9 +17,10 @@ styleUrls: ['./tarief.component.scss']
 export class TariefComponent implements OnInit{
     
     Tarieven : IParkeertariefInfo;
-    
+    private position;
     lat: number =  51.2194475;
     lng: number =  4.4024643;
+    location : any;
 
     polygonPunten : polygon[];
 
@@ -31,9 +32,22 @@ export class TariefComponent implements OnInit{
     data: any[];
 
     ngOnInit() {
+        if(navigator.geolocation)
+        {   
+            navigator.geolocation.getCurrentPosition(position =>
+            {
+               this.location = position.coords;
+               this.lat = position.coords.latitude;
+               this.lng = position.coords.longitude;
+               console.log(position.coords); 
+               console.log(this.lat);
+               console.log(this.lng);
+            });
+        }
         this._svc.getTarief()
         .subscribe(result => this.extractData(result));
-    }
+    
+}
   
 
     extractData(result : IParkeertariefInfo){
@@ -74,7 +88,7 @@ export class TariefComponent implements OnInit{
                     
                          
             }
-            console.log(this.polygonPunten);
+          //  console.log(this.polygonPunten);
             
         } 
     
