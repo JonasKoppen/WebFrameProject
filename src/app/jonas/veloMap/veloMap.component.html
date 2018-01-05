@@ -1,0 +1,93 @@
+
+
+  <div class="row">
+    <div class="col">
+      <agm-map 
+          [latitude]="lat" 
+          [longitude]="lng"
+          [zoom] = "zoom"
+          (mapClick)="mapClicked($event)">
+          <agm-marker 
+              [latitude]="selectMarker.lat"
+              [longitude]="selectMarker.lng"
+              [label]="selectMarker.label"
+              [markerDraggable]="selectMarker.draggable"
+              (markerClick)="clickedMarker(selectMarker.label)"
+              (dragEnd)="markerDragEnd(selectMarker, $event)"
+              [iconUrl]="icon">
+          </agm-marker>
+          <agm-marker 
+              [latitude]="userLoc.lat"
+              [longitude]="userLoc.lng"
+              [label]="userLoc.label"
+              [iconUrl]="icon2">
+              <agm-info-window>
+                <strong>{{userLoc.info}}</strong>
+            </agm-info-window>
+          </agm-marker>
+
+          <agm-marker 
+              *ngFor="let station of stationMarkers"
+              [latitude]="station.lat"
+              [longitude]="station.lng"
+              [label]="station.label"
+              (markerClick)="clickedMarker(station.label)">
+          
+              <agm-info-window>
+                  <strong>{{station.info}}</strong>
+              </agm-info-window>
+          </agm-marker>
+
+      </agm-map>
+    </div>
+    <div class="col-sm-4">
+        <div class="container">
+        <app-weather></app-weather>
+        <br>
+        <app-veloData 
+        [dichtBij] = "dichtBij"></app-veloData>
+    </div>
+  </div>
+</div>
+<!--
+
+<div class="card" >
+    <div class="card-header">Dichst bijzijnde veloStations</div>
+    <div class="row">
+    <div class="card-block col-sm-6">
+      <table clas="table table-hover">
+        <thread>
+          <tr>
+            <th>ID</th>
+            <th>adres</th>
+            <th> </th>
+          </tr>
+        </thread>
+        <tbody *ngIf="dichtBij">
+          <tr *ngFor="let vertrek of dichtBij">
+              <td>{{vertrek.id}}</td>
+              <td>{{vertrek.info}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-block col-sm-6">
+      <table clas="table table-hover">
+        <thread>
+          <tr>
+            <th>ID</th>
+            <th>adres</th>
+            <th> </th>
+          </tr>
+        </thread>
+        <tbody *ngIf="dichtBij2">
+          <tr *ngFor="let vertrek of dichtBij2">
+              <td>{{vertrek.id}}</td>
+              <td>{{vertrek.info}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  -->

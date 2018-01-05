@@ -7,14 +7,21 @@ import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AgmCoreModule} from '@agm/core'
-import { VeloComponent } from './jonas/velo.component';
+import { VeloMapComponent } from './jonas/veloMap/veloMap.component';
 import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CarpoolComponent } from './carpool/carpool.component';
 import { CarpoolService } from './services/carpool.service';
+<<<<<<< HEAD
 import { TariefComponent } from './tarief/tarief.component';
 import { TariefService } from './services/parkeertarief.service';
 
+=======
+import { VeloComponent } from './jonas/velo.component';
+import { VeloDataComponent } from './jonas/veloData/veloData.component';
+import { WeatherComponent } from './jonas/weather/weather.component';
+import { WeatherService } from './services/weather.service';
+>>>>>>> cea561212fa13ed958eaa1a65421d2b1233d5c76
 
 @NgModule({
   declarations: [
@@ -22,10 +29,18 @@ import { TariefService } from './services/parkeertarief.service';
     PageNotFoundComponent,
     HomeComponent,
     NavbarComponent,
+    VeloMapComponent,
+    CarpoolComponent,
+    VeloDataComponent,
+    VeloMapComponent,
     VeloComponent,
+<<<<<<< HEAD
     CarpoolComponent,
     TariefComponent
     
+=======
+    WeatherComponent 
+>>>>>>> cea561212fa13ed958eaa1a65421d2b1233d5c76
   ],
   imports: [
     BrowserModule,
@@ -46,7 +61,11 @@ import { TariefService } from './services/parkeertarief.service';
   providers: [
     VeloService,
     CarpoolService,
+<<<<<<< HEAD
     TariefService
+=======
+    WeatherService
+>>>>>>> cea561212fa13ed958eaa1a65421d2b1233d5c76
   ],
   bootstrap: [AppComponent]
 })

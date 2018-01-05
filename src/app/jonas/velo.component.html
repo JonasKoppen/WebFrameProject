@@ -1,74 +1,8 @@
-<div class="container text-center">
-    <agm-map 
-        [latitude]="lat" 
-        [longitude]="lng"
-        [zoom] = "zoom"
-        (mapClick)="mapClicked($event)">
-
-
-        <agm-marker 
-            *ngFor="let station of markers2"
-            [latitude]="station.lat"
-            [longitude]="station.lng"
-            [label]="station.label"
-            [markerDraggable]="station.draggable"
-            (markerClick)="clickedMarker(station.label)"
-            (dragEnd)="markerDragEnd(station, $event)">
-        </agm-marker>
-
-        <agm-marker 
-            *ngFor="let station of markers"
-            [latitude]="station.lat"
-            [longitude]="station.lng"
-            [label]="station.label"
-            [markerDraggable]="station.draggable"
-            (markerClick)="clickedMarker(station.label)">
-        
-            <agm-info-window>
-                <strong>{{station.info}}</strong>
-            </agm-info-window>
-        </agm-marker>
-
-    </agm-map>
-<!--Card-->
-<div class="card" >
-    <div class="card-header">Dichst bijzijnde veloStations</div>
-    <div class="row">
-    <div class="card-block col-sm-6">
-      <table clas="table table-hover">
-        <thread>
-          <tr>
-            <th>ID</th>
-            <th>adres</th>
-            <th> </th>
-          </tr>
-        </thread>
-        <tbody *ngIf="dichtBij">
-          <tr *ngFor="let vertrek of dichtBij">
-              <td>{{vertrek.id}}</td>
-              <td>{{vertrek.info}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card-block col-sm-6">
-      <table clas="table table-hover">
-        <thread>
-          <tr>
-            <th>ID</th>
-            <th>adres</th>
-            <th> </th>
-          </tr>
-        </thread>
-        <tbody *ngIf="dichtBij2">
-          <tr *ngFor="let vertrek of dichtBij2">
-              <td>{{vertrek.id}}</td>
-              <td>{{vertrek.info}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  </div>
-  <!--/.Card-->
-</div>
+<app-veloMap
+[(dichtBij)] = "dichtBij" 
+[(dichtBij2)] = "dichtBij2"
+></app-veloMap>
+<app-veloData
+[dichtBij] = "dichtBij" 
+[dichtBij2] = "dichtBij2">
+</app-veloData>

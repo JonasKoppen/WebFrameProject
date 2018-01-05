@@ -1,0 +1,23 @@
+<div class="card" >
+    <div class="card-header">Dichst bijzijnde veloStations</div>
+    <div class="row">
+    <div class="card-block col-sm-6">
+      <table clas="table table-hover">
+        <thread>
+          <tr>
+            <th>ID</th>
+            <th>adres</th>
+            <th>afstand (in meters)</th>
+          </tr>
+        </thread>
+        <tbody>
+          <tr *ngFor="let vertrek of dichtBij">
+              <td>{{vertrek.id}}</td>
+              <td>{{vertrek.info}}</td>
+              <td>{{vertrek.distance}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>

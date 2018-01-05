@@ -1,0 +1,14 @@
+<!--Card-->
+<div class="card" *ngIf="data">
+    <div class="card-header">{{data.location | uppercase}}
+      <img class="pull-right" width="50px;" *ngIf="data.icon" src="http://openweathermap.org/img/w/{{data.icon}}.png">
+    </div>
+    
+    <div class="card-block">
+      <ul class="list-group" style="text-align:center">
+        <li class="list-group-item">Momenteel: <string><b>{{data.description}}</b></string></li>
+        <li class="list-group-item">Temperatuur: <string><b>{{data.temperature | number : '1.1-5'}}</b></string></li>
+      </ul>
+    </div>
+  </div>
+  <!--/.Card-->
