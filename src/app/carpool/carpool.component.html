@@ -1,9 +1,11 @@
-<div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary" type="button">Search</button>
-        </div>
-        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-      </div>
+
+<div class="container text-center">
+
+        <div>
+
+                <h1>Carpool parkings Antwerpen</h1>
+            
+            </div>
 
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
@@ -22,10 +24,13 @@
   [latitude]="carpool.lat"
   [longitude]="carpool.lng"
   [label]="carpool.label">
-  >
+  
+  
 
 </agm-marker>
 </agm-map>
+</div>
+<div class="container">
 
 <div class="card" *ngIf="Carpool">
     <div class="card-header">Carpoolparkings</div>
@@ -33,13 +38,14 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>type</th>
                     <th>naam</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let carpool of Carpool.data" (click)="SetPosition(carpool.point_lat, carpool.point_lng)">
-                   
+                    <td> {{carpool.id}}</td>
                     <td>{{carpool.type}}</td>
                     <td>{{carpool.naam}}</td>
                 </tr>
@@ -47,3 +53,4 @@
         </table>
     </div>
   </div>
+</div>

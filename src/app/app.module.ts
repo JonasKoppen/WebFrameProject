@@ -12,6 +12,9 @@ import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CarpoolComponent } from './carpool/carpool.component';
 import { CarpoolService } from './services/carpool.service';
+import { TariefComponent } from './tarief/tarief.component';
+import { TariefService } from './services/parkeertarief.service';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { CarpoolService } from './services/carpool.service';
     HomeComponent,
     NavbarComponent,
     VeloComponent,
-    CarpoolComponent
+    CarpoolComponent,
+    TariefComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ import { CarpoolService } from './services/carpool.service';
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     VeloService,
-    CarpoolService
+    CarpoolService,
+    TariefService
   ],
   bootstrap: [AppComponent]
 })
