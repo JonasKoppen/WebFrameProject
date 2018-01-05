@@ -21,6 +21,9 @@
               [longitude]="userLoc.lng"
               [label]="userLoc.label"
               [iconUrl]="icon2">
+              <agm-info-window>
+                <strong>{{userLoc.info}}</strong>
+            </agm-info-window>
           </agm-marker>
 
           <agm-marker 

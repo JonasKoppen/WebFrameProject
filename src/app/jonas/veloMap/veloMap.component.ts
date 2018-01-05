@@ -85,22 +85,22 @@ export class VeloMapComponent implements OnInit{
         this.selectMarker.lng = this.userLoc.lng                                                    
     }
 
-    extractData(lol : IVeloCollection){
-        if(lol!= null)
+    extractData(result : IVeloCollection){
+        if(result!= null)
         {
-            this.collection = lol;
-            var some = lol.data;
-            this.stationMarkers = new Array(some.length);
-            this.test = new Array(some.length)
-            for(var i = 0; i < some.length; i++){
-                this.test[i] = some[i];
+            this.collection = result;
+            var tmpData = result.data;
+            this.stationMarkers = new Array(tmpData.length);
+            this.test = new Array(tmpData.length)
+            for(var i = 0; i < tmpData.length; i++){
+                this.test[i] = tmpData[i];
                 this.stationMarkers[i] = ({
                     id : i,
-                    lat: parseFloat(some[i].point_lat),
-                    lng: parseFloat(some[i].point_lng),
+                    lat: parseFloat(tmpData[i].point_lat),
+                    lng: parseFloat(tmpData[i].point_lng),
                     label: i.toString(),
                     draggable: false,
-                    info:"adres: "+some[i].straatnaam + " "+ some[i].huisnummer
+                    info:"adres: "+tmpData[i].straatnaam + " "+ tmpData[i].huisnummer
                 })
             }
         }
@@ -161,4 +161,3 @@ export class VeloMapComponent implements OnInit{
 
   }
   
-  // just an interface for type safety.
