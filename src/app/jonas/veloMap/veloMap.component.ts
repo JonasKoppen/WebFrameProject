@@ -23,17 +23,23 @@ export class VeloMapComponent implements OnInit{
     public lng: number;
     public zoom: number = 12;
     icon = "/assets/location2.png";
+    icon2 = "/assets/location3.png";
 
     collection : IVeloCollection;
-    markers : marker[]
-    markers2 : marker
+
+    stationMarkers : marker[]
+    
+    selectMarker : marker
+
+    userLoc : marker
+    
+
     dichtBij: marker[]
-    dichtBij2: marker[]
     test : IVeloStation[]
 
     constructor(private _svc : VeloService)
     {
-        this.markers2 = ({
+        this.selectMarker = ({
             id : 0,
             lat: 51.215410,
             lng: 4.414489,
@@ -41,6 +47,24 @@ export class VeloMapComponent implements OnInit{
             draggable: true,
             info:"place me"
         })
+        this.userLoc = ({
+            id : 0,
+            lat: 51.215410,
+            lng: 4.414489,
+            label: "",
+            draggable: false,
+            info:"you are here"
+        })
+
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(position => {
+              this.userLoc.lat = position.coords.latitude;
+              this.userLoc.lng = position.coords.longitude;
+              console.log(position.coords); 
+              console.log(this.lat);
+              console.log(this.lng);
+            });
+        }      
     } 
     
     ngOnInit(): void {
@@ -48,15 +72,17 @@ export class VeloMapComponent implements OnInit{
         
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
-              this.markers2.lat = position.coords.latitude;
-              this.markers2.lng = position.coords.longitude;
+              this.userLoc.lat = position.coords.latitude;
+              this.userLoc.lng = position.coords.longitude;
               console.log(position.coords); 
               console.log(this.lat);
               console.log(this.lng);
             });
         }
-        this.lat = this.markers2.lat
-        this.lng = this.markers2.lng                                                     
+        this.lat = this.userLoc.lat
+        this.lng = this.userLoc.lng
+        this.selectMarker.lat = this.userLoc.lat     
+        this.selectMarker.lng = this.userLoc.lng                                                    
     }
 
     extractData(lol : IVeloCollection){
@@ -64,11 +90,11 @@ export class VeloMapComponent implements OnInit{
         {
             this.collection = lol;
             var some = lol.data;
-            this.markers = new Array(some.length);
+            this.stationMarkers = new Array(some.length);
             this.test = new Array(some.length)
             for(var i = 0; i < some.length; i++){
                 this.test[i] = some[i];
-                this.markers[i] = ({
+                this.stationMarkers[i] = ({
                     id : i,
                     lat: parseFloat(some[i].point_lat),
                     lng: parseFloat(some[i].point_lng),
@@ -89,20 +115,20 @@ export class VeloMapComponent implements OnInit{
     }
 
     mapClicked($event: MouseEvent) {
-        this.markers2.lat = $event.coords.lat;
-        this.markers2.lng = $event.coords.lng;
+        this.selectMarker.lat = $event.coords.lat;
+        this.selectMarker.lng = $event.coords.lng;
         this.calcDichtBij();
     }
 
     calcDichtBij(){
-        var tmpMarkers = this.markers.slice();
+        var tmpMarkers = this.stationMarkers.slice();
         this.dichtBij = Array(5);
         this.dichtBij.sort()
         for(var i =0; i< tmpMarkers.length; i++){
             tmpMarkers[i].distance = geolib.getDistance(
                 {
-                    latitude: this.markers2.lat,
-                    longitude: this.markers2.lng
+                    latitude: this.selectMarker.lat,
+                    longitude: this.selectMarker.lng
                 },
                 {
                     latitude: tmpMarkers[i].lat,
@@ -128,8 +154,8 @@ export class VeloMapComponent implements OnInit{
 
     markerDragEnd(m: marker, $event: MouseEvent) {
         console.log('dragEnd', m);
-        this.markers2.lat = $event.coords.lat;
-        this.markers2.lng = $event.coords.lng;
+        this.selectMarker.lat = $event.coords.lat;
+        this.selectMarker.lng = $event.coords.lng;
         this.calcDichtBij();
       }
 
