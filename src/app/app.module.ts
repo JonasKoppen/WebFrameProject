@@ -12,10 +12,12 @@ import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CarpoolComponent } from './carpool/carpool.component';
 import { CarpoolService } from './services/carpool.service';
-import { TariefComponent } from './tarief/tarief.component';
+import { TariefMapComponent } from './tarief/TariefMap/tariefMap.component';
 import { TariefService } from './services/parkeertarief.service';
 import { VeloComponent } from './jonas/velo.component';
 import { VeloDataComponent } from './jonas/veloData/veloData.component';
+import { TariefViewComponent } from './tarief/tariefView.component';
+import { TariefDataComponent } from './tarief/TariefData/tariefData.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { VeloDataComponent } from './jonas/veloData/veloData.component';
     VeloMapComponent,
     VeloComponent,
     CarpoolComponent,
-    TariefComponent
+    TariefMapComponent,
+    TariefViewComponent,
+    TariefDataComponent
     
   ],
   imports: [
@@ -42,7 +46,9 @@ import { VeloDataComponent } from './jonas/veloData/veloData.component';
       {path: "404", component: PageNotFoundComponent},
       {path: "home", component : HomeComponent},
       {path: "carpool", component : CarpoolComponent},
-      {path: "velo", component: VeloComponent}
+      {path: "velo", component: VeloComponent},
+      {path: "tarief", component: TariefViewComponent}
+    
     ], {useHash:true}),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCiKlnD4BuX5sIWdAb0VYxZIs4-W6EEQdI'

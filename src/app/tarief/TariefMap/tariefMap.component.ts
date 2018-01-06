@@ -2,19 +2,19 @@ import { Component } from '@angular/core';
 import {AgmCoreModule} from "@agm/core"
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Marker } from '@agm/core/services/google-maps-types';
-import { TariefService,  IParkeertariefInfo, IGeometry } from '../services/parkeertarief.service';
+import { TariefService, IParkeertariefInfo } from '../../services/parkeertarief.service';
 
 //API used: https://angular-maps.com/guides/getting-started/#setting-up-angular-google-maps
 //Google site: https://developers.google.com/maps/documentation/javascript/importing_data
 
 @Component({
-selector: 'app-tarief',
-templateUrl: './tarief.component.html',
-styleUrls: ['./tarief.component.scss']
+selector: 'app-tariefmap',
+templateUrl: './tariefMap.component.html',
+styleUrls: ['./tariefMap.component.scss']
 }) 
 
 
-export class TariefComponent implements OnInit{
+export class TariefMapComponent implements OnInit{
     
     Tarieven : IParkeertariefInfo;
     private position;
@@ -53,7 +53,7 @@ export class TariefComponent implements OnInit{
     extractData(result : IParkeertariefInfo){
         if (result!=null)
         {
-            console.log(result);
+         //   console.log(result);
             this.data = result.data;
 
             let linelenght = 0;
