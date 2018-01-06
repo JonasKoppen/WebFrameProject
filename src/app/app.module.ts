@@ -11,22 +11,15 @@ import { VeloMapComponent } from './jonas/veloMap/veloMap.component';
 import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CarpoolComponent } from './carpool/carpool.component';
-<<<<<<< HEAD
 import { CarpoolService } from './services/carpool.service';
-=======
->>>>>>> 70920c477576e1633db0bb003382eb4259113e5b
 import { TariefMapComponent } from './tarief/TariefMap/tariefMap.component';
 import { TariefService } from './services/parkeertarief.service';
 import { VeloComponent } from './jonas/velo.component';
 import { VeloDataComponent } from './jonas/veloData/veloData.component';
 import { TariefViewComponent } from './tarief/tariefView.component';
 import { TariefDataComponent } from './tarief/TariefData/tariefData.component';
-<<<<<<< HEAD
-=======
 import { WeatherComponent } from './jonas/weather/weather.component';
-import { CarpoolService } from './services/carpool.service';
 import { WeatherService } from './services/weather.service';
->>>>>>> 70920c477576e1633db0bb003382eb4259113e5b
 
 
 @NgModule({
@@ -43,14 +36,9 @@ import { WeatherService } from './services/weather.service';
     CarpoolComponent,
     TariefMapComponent,
     TariefViewComponent,
-<<<<<<< HEAD
-    TariefDataComponent
-    
-=======
     TariefDataComponent,
     WeatherComponent
 
->>>>>>> 70920c477576e1633db0bb003382eb4259113e5b
   ],
   imports: [
     BrowserModule,
@@ -73,12 +61,8 @@ import { WeatherService } from './services/weather.service';
   providers: [
     VeloService,
     CarpoolService,
-<<<<<<< HEAD
-    TariefService
-=======
     TariefService,
     WeatherService
->>>>>>> 70920c477576e1633db0bb003382eb4259113e5b
   ],
   bootstrap: [AppComponent]
 })
