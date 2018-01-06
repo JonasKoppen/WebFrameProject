@@ -6,6 +6,7 @@ import { Marker, google } from '@agm/core/services/google-maps-types';
 import {} from 'mathjs'
 import { IVeloCollection, VeloService, marker, IVeloStation } from '../../services/velo.service';
 import * as geolib from 'geolib'
+import { element } from 'protractor';
 
 //API used: https://angular-maps.com/guides/getting-started/#setting-up-angular-google-maps
 //Google site: https://developers.google.com/maps/documentation/javascript/importing_data
@@ -55,6 +56,9 @@ export class VeloMapComponent implements OnInit{
         
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
+                if(position.coords.latitude == 0 && position.coords.latitude == 0){
+                    console.log("hi")
+                }
                 this.userLoc.lat = position.coords.latitude;
                 this.userLoc.lng = position.coords.longitude;
                 this.lat = position.coords.latitude;
@@ -62,10 +66,15 @@ export class VeloMapComponent implements OnInit{
                 this.selectMarker.lat = position.coords.latitude;
                 this.selectMarker.lng = position.coords.longitude;
                 console.log(position.coords); 
+                console.log("hi")
                 console.log(this.lat);
                 console.log(this.lng);
             });
         }
+        else{
+            console.log("hi")
+        }
+        
                                                 
     }
 
