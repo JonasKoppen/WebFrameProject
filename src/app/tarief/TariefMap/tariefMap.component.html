@@ -1,5 +1,12 @@
 <agm-map [latitude]="lat" [longitude]="lng" [zoom] = "15">    
+        <agm-marker
   
+        [latitude]="lat"
+        [longitude]="lng"
+        [iconUrl]="icon"
+        >
+      </agm-marker>
+      
         <agm-polygon  *ngFor = "let polygon of polygonPunten" 
 
         [paths]="polygon.punten"

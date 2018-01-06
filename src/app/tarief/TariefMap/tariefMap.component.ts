@@ -21,6 +21,7 @@ export class TariefMapComponent implements OnInit{
     lat: number =  51.2194475;
     lng: number =  4.4024643;
     location : any;
+    icon = "/assets/location.png";
 
     polygonPunten : polygon[];
 

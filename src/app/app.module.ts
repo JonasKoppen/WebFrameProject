@@ -10,23 +10,16 @@ import {AgmCoreModule} from '@agm/core'
 import { VeloMapComponent } from './jonas/veloMap/veloMap.component';
 import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CarpoolComponent } from './carpool/carpool.component';
-<<<<<<< HEAD
-import { CarpoolService } from './services/carpool.service';
-=======
->>>>>>> 70920c477576e1633db0bb003382eb4259113e5b
 import { TariefMapComponent } from './tarief/TariefMap/tariefMap.component';
-import { TariefService } from './services/parkeertarief.service';
-import { VeloComponent } from './jonas/velo.component';
 import { VeloDataComponent } from './jonas/veloData/veloData.component';
 import { TariefViewComponent } from './tarief/tariefView.component';
 import { TariefDataComponent } from './tarief/TariefData/tariefData.component';
-<<<<<<< HEAD
-=======
-import { WeatherComponent } from './jonas/weather/weather.component';
+import { VeloComponent } from './jonas/velo.component';
 import { CarpoolService } from './services/carpool.service';
-import { WeatherService } from './services/weather.service';
->>>>>>> 70920c477576e1633db0bb003382eb4259113e5b
+import { TariefService } from './services/parkeertarief.service';
+import { CarpoolmapComponent } from './carpool/CarpoolMap/carpoolmap.component';
+import { CarpoolDataComponent } from './carpool/CarpoolData/carpooldata.component';
+import { CarpoolComponent } from './carpool/carpool.component';
 
 
 @NgModule({
@@ -36,21 +29,16 @@ import { WeatherService } from './services/weather.service';
     HomeComponent,
     NavbarComponent,
     VeloMapComponent,
-    CarpoolComponent,
     VeloDataComponent,
     VeloMapComponent,
     VeloComponent,
-    CarpoolComponent,
+    CarpoolmapComponent,
     TariefMapComponent,
     TariefViewComponent,
-<<<<<<< HEAD
-    TariefDataComponent
-    
-=======
     TariefDataComponent,
-    WeatherComponent
-
->>>>>>> 70920c477576e1633db0bb003382eb4259113e5b
+    CarpoolDataComponent,
+    CarpoolComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -73,12 +61,7 @@ import { WeatherService } from './services/weather.service';
   providers: [
     VeloService,
     CarpoolService,
-<<<<<<< HEAD
     TariefService
-=======
-    TariefService,
-    WeatherService
->>>>>>> 70920c477576e1633db0bb003382eb4259113e5b
   ],
   bootstrap: [AppComponent]
 })
