@@ -1,0 +1,24 @@
+<div class="container">
+        <div class="card" *ngIf="Carpool">
+            <div class="card-header">Carpoolparkings</div>
+            <div class="card-block">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>type</th>
+                            <th>naam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let carpool of Carpool.data" (click)="SetPosition(carpool.point_lat, carpool.point_lng)">
+                            <td> {{carpool.id}}</td>
+                            <td>{{carpool.type}}</td>
+                            <td>{{carpool.naam}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+        
