@@ -20,19 +20,13 @@ export class VeloMapComponent implements OnInit{
     title = 'veloMap';
     public lat: number;
     public lng: number;
-    public zoom: number = 12;
+    public zoom: number = 15;
     icon = "/assets/location2.png";
     icon2 = "/assets/location3.png";
-
     collection : IVeloCollection;
-
     stationMarkers : marker[]
-    
     selectMarker : marker
-
     userLoc : marker
-    
-
     dichtBij: marker[]
     test : IVeloStation[]
 
@@ -54,16 +48,6 @@ export class VeloMapComponent implements OnInit{
             draggable: false,
             info:"you are here"
         })
-
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(position => {
-              this.userLoc.lat = position.coords.latitude;
-              this.userLoc.lng = position.coords.longitude;
-              console.log(position.coords); 
-              console.log(this.lat);
-              console.log(this.lng);
-            });
-        }      
     } 
     
     ngOnInit(): void {
@@ -71,17 +55,18 @@ export class VeloMapComponent implements OnInit{
         
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
-              this.userLoc.lat = position.coords.latitude;
-              this.userLoc.lng = position.coords.longitude;
-              console.log(position.coords); 
-              console.log(this.lat);
-              console.log(this.lng);
+                this.userLoc.lat = position.coords.latitude;
+                this.userLoc.lng = position.coords.longitude;
+                this.lat = position.coords.latitude;
+                this.lng = position.coords.longitude;
+                this.selectMarker.lat = position.coords.latitude;
+                this.selectMarker.lng = position.coords.longitude;
+                console.log(position.coords); 
+                console.log(this.lat);
+                console.log(this.lng);
             });
         }
-        this.lat = this.userLoc.lat
-        this.lng = this.userLoc.lng
-        this.selectMarker.lat = this.userLoc.lat     
-        this.selectMarker.lng = this.userLoc.lng                                                    
+                                                
     }
 
     extractData(result : IVeloCollection){
@@ -99,11 +84,11 @@ export class VeloMapComponent implements OnInit{
                     lng: parseFloat(tmpData[i].point_lng),
                     label: i.toString(),
                     draggable: false,
-                    info:"adres: "+tmpData[i].straatnaam + " "+ tmpData[i].huisnummer
+                    info: tmpData[i].straatnaam + " "+ tmpData[i].huisnummer
                 })
             }
         }
-       
+        this.calcDichtBij();     
     }
 
     clickedMarker(iput :  string)
