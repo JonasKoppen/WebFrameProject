@@ -17,6 +17,7 @@ import { TariefService } from './services/parkeertarief.service';
 import { VeloComponent } from './jonas/velo.component';
 import { WeatherComponent } from './jonas/weather/weather.component';
 import { VeloDataComponent } from './jonas/veloData/veloData.component';
+import { WeatherService } from './services/weather.service';
 
 @NgModule({
   declarations: [
