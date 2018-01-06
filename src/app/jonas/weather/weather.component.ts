@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as mathjs from 'mathjs';
 import { WeatherService, IWeatherResult } from '../../services/weather.service';
+import { marker } from '../../services/velo.service';
 
 interface IWeather{
     location: string;
@@ -19,19 +20,22 @@ export class WeatherComponent implements OnInit{
     title = 'WeatherComponent';
     private _search: string = "Antwerpen";
     data: IWeather
+    @Input() location:marker
 
     constructor(private _svc: WeatherService){}
 
     ngOnInit(){
       this._svc.getCurrentWeatherAt(this._search)
       .subscribe(result => this.data = this.MapResult(result))
+      //setInterval(this.hi() , 1000);
     }
-    /*
-    ngOnChange(){
-      this._svc.getCurrentWeatherAt(this._search)
+    
+
+    hi(){
+      this._svc.getCurrentWeatherAtCoor(this.location.lat, this.location.lng)
       .subscribe(result => this.data = this.MapResult(result))
+      console.log("update");
     }
-    */
 
     private MapResult(result : IWeatherResult) : IWeather{
       return{

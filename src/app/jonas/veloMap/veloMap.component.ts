@@ -119,7 +119,6 @@ export class VeloMapComponent implements OnInit{
                     longitude: tmpMarkers[i].lng
                 }
             )
-            console.log(tmpMarkers[i].distance)
         }
         for(var i = 0; i<5; i++){
             var tmp = -1;
