@@ -1,23 +1,21 @@
 <div class="card" >
     <div class="card-header">Dichst bijzijnde veloStations</div>
-    <div class="row">
-    <div class="card-block col-sm-6">
-      <table clas="table table-hover">
-        <thread>
-          <tr>
+    <div class="card-body"> 
+      <table clas="table table-hover"  style="text-align:center">
+        <thead>
+          <tr class="blue-grey lighten-4">
             <th>ID</th>
             <th>adres</th>
             <th>afstand (in meters)</th>
           </tr>
-        </thread>
+        </thead>
         <tbody>
           <tr *ngFor="let vertrek of dichtBij">
-              <td>{{vertrek.id}}</td>
+              <th>{{vertrek.id}}</th>
               <td>{{vertrek.info}}</td>
               <td>{{vertrek.distance}}</td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
   </div>

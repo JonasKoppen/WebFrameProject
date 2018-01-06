@@ -1,7 +1,7 @@
 
 
   <div class="row">
-    <div class="col">
+    <div class="col-lg">
       <agm-map 
           [latitude]="lat" 
           [longitude]="lng"
@@ -22,7 +22,7 @@
               [label]="userLoc.label"
               [iconUrl]="icon2">
               <agm-info-window>
-                <strong>{{userLoc.info}}</strong>
+                <strong>Adres: {{userLoc.info}}</strong>
             </agm-info-window>
           </agm-marker>
 
@@ -40,54 +40,14 @@
 
       </agm-map>
     </div>
-    <div class="col-sm-4">
-        <div class="container">
-        <app-weather></app-weather>
+    <div class="col-sm-3">
+        <div class="row-sm">
+          <app-weather></app-weather>
+        </div>
         <br>
-        <app-veloData 
-        [dichtBij] = "dichtBij"></app-veloData>
+        <div class="row-sm">
+          <app-veloData 
+          [dichtBij] = "dichtBij"></app-veloData>
+        </div>
     </div>
-  </div>
 </div>
-<!--
-
-<div class="card" >
-    <div class="card-header">Dichst bijzijnde veloStations</div>
-    <div class="row">
-    <div class="card-block col-sm-6">
-      <table clas="table table-hover">
-        <thread>
-          <tr>
-            <th>ID</th>
-            <th>adres</th>
-            <th> </th>
-          </tr>
-        </thread>
-        <tbody *ngIf="dichtBij">
-          <tr *ngFor="let vertrek of dichtBij">
-              <td>{{vertrek.id}}</td>
-              <td>{{vertrek.info}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card-block col-sm-6">
-      <table clas="table table-hover">
-        <thread>
-          <tr>
-            <th>ID</th>
-            <th>adres</th>
-            <th> </th>
-          </tr>
-        </thread>
-        <tbody *ngIf="dichtBij2">
-          <tr *ngFor="let vertrek of dichtBij2">
-              <td>{{vertrek.id}}</td>
-              <td>{{vertrek.info}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  </div>
-  -->
