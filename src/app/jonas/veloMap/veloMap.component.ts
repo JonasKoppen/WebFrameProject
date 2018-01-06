@@ -19,9 +19,9 @@ providers:[VeloService]
 }) 
 export class VeloMapComponent implements OnInit{
     title = 'veloMap';
-    public lat: number;
-    public lng: number;
-    public zoom: number = 15;
+    lat: number =  51.2194475;
+    lng: number =  4.4024643;
+    zoom: number = 15;
     icon = "/assets/location2.png";
     icon2 = "/assets/location3.png";
     collection : IVeloCollection;
