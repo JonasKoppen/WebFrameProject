@@ -2,24 +2,25 @@ import { Component } from '@angular/core';
 import {AgmCoreModule} from "@agm/core"
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Marker } from '@agm/core/services/google-maps-types';
-import { TariefService,  IParkeertariefInfo, IGeometry } from '../services/parkeertarief.service';
+import { TariefService, IParkeertariefInfo } from '../../services/parkeertarief.service';
 
 //API used: https://angular-maps.com/guides/getting-started/#setting-up-angular-google-maps
 //Google site: https://developers.google.com/maps/documentation/javascript/importing_data
 
 @Component({
-selector: 'app-tarief',
-templateUrl: './tarief.component.html',
-styleUrls: ['./tarief.component.scss']
+selector: 'app-tariefmap',
+templateUrl: './tariefMap.component.html',
+styleUrls: ['./tariefMap.component.scss']
 }) 
 
 
-export class TariefComponent implements OnInit{
+export class TariefMapComponent implements OnInit{
     
     Tarieven : IParkeertariefInfo;
-    
+    private position;
     lat: number =  51.2194475;
     lng: number =  4.4024643;
+    location : any;
 
     polygonPunten : polygon[];
 
@@ -31,15 +32,28 @@ export class TariefComponent implements OnInit{
     data: any[];
 
     ngOnInit() {
+        if(navigator.geolocation)
+        {   
+            navigator.geolocation.getCurrentPosition(position =>
+            {
+               this.location = position.coords;
+               this.lat = position.coords.latitude;
+               this.lng = position.coords.longitude;
+               console.log(position.coords); 
+               console.log(this.lat);
+               console.log(this.lng);
+            });
+        }
         this._svc.getTarief()
         .subscribe(result => this.extractData(result));
-    }
+    
+}
   
 
     extractData(result : IParkeertariefInfo){
         if (result!=null)
         {
-            console.log(result);
+         //   console.log(result);
             this.data = result.data;
 
             let linelenght = 0;
@@ -74,7 +88,7 @@ export class TariefComponent implements OnInit{
                     
                          
             }
-            console.log(this.polygonPunten);
+          //  console.log(this.polygonPunten);
             
         } 
     

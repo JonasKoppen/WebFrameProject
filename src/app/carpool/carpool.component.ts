@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {AgmCoreModule} from "@agm/core"
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Marker } from '@agm/core/services/google-maps-types';
 import { CarpoolService, ICarpoolCollection } from '../services/carpool.service';
@@ -41,15 +40,15 @@ export class CarpoolComponent implements OnInit{
    
 
     ngOnInit(){
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(position => {
-              this.location = position.coords;
-              this.lat = position.coords.latitude;
-              this.lng = position.coords.longitude;
-              console.log(position.coords); 
-              console.log(this.lat);
-              console.log(this.lng);
-            });
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(position => {
+                this.location = position.coords;
+                this.lat = position.coords.latitude;
+                this.lng = position.coords.longitude;
+                console.log(position.coords); 
+                console.log(this.lat);
+                console.log(this.lng);
+                });
          }
 
         this._svc.getCarpool()
