@@ -7,19 +7,19 @@ import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AgmCoreModule} from '@agm/core'
-import { VeloMapComponent } from './jonas/veloMap/veloMap.component';
 import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CarpoolComponent } from './carpool/carpool.component';
 import { CarpoolService } from './services/carpool.service';
 import { TariefMapComponent } from './tarief/TariefMap/tariefMap.component';
 import { TariefService } from './services/parkeertarief.service';
-import { VeloComponent } from './jonas/velo.component';
-import { VeloDataComponent } from './jonas/veloData/veloData.component';
 import { TariefViewComponent } from './tarief/tariefView.component';
 import { TariefDataComponent } from './tarief/TariefData/tariefData.component';
-import { WeatherComponent } from './jonas/weather/weather.component';
 import { WeatherService } from './services/weather.service';
+import { VeloMapAllComponent } from './Velo/veloMapAll/veloMapAll.component';
+import { VeloDataComponent } from './Velo/veloData/veloData.component';
+import { VeloMapNearComponent } from './Velo/veloMapNear/veloMapNear.component';
+import { WeatherComponent } from './Velo/weather/weather.component';
 
 
 @NgModule({
@@ -28,16 +28,16 @@ import { WeatherService } from './services/weather.service';
     PageNotFoundComponent,
     HomeComponent,
     NavbarComponent,
-    VeloMapComponent,
+    VeloMapAllComponent,
     CarpoolComponent,
     VeloDataComponent,
-    VeloMapComponent,
-    VeloComponent,
+    VeloMapNearComponent,
     CarpoolComponent,
     TariefMapComponent,
     TariefViewComponent,
     TariefDataComponent,
-    WeatherComponent
+    WeatherComponent,
+    VeloDataComponent
 
   ],
   imports: [
@@ -45,12 +45,13 @@ import { WeatherService } from './services/weather.service';
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
-      {path : "", redirectTo: "404", pathMatch: "full"},
-      {path: "404", component: PageNotFoundComponent},
       {path: "home", component : HomeComponent},
       {path: "carpool", component : CarpoolComponent},
-      {path: "velo", component: VeloComponent},
-      {path: "tarief", component: TariefViewComponent}
+      {path: "veloAll", component: VeloMapAllComponent},
+      {path: "veloNear", component: VeloMapNearComponent},
+      {path: "tarief", component: TariefViewComponent},
+      {path : "", redirectTo: "404", pathMatch: "full"},
+      {path: "404", component: PageNotFoundComponent},
     
     ], {useHash:true}),
     AgmCoreModule.forRoot({
