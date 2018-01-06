@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { marker } from "../services/velo.service";
 
 @Component({
     selector: 'app-velo',
@@ -8,6 +7,4 @@ import { marker } from "../services/velo.service";
 export class VeloComponent
 {
     title = 'velo';
-    @Input() dichtBij: marker[];
-    @Input() dichtBij2: marker[];
 }

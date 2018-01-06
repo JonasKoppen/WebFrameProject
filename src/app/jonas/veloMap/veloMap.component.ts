@@ -5,7 +5,6 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Marker, google } from '@agm/core/services/google-maps-types';
 import {} from 'mathjs'
 import { IVeloCollection, VeloService, marker, IVeloStation } from '../../services/velo.service';
-//import { loadavg } from 'os';
 import * as geolib from 'geolib'
 
 //API used: https://angular-maps.com/guides/getting-started/#setting-up-angular-google-maps
