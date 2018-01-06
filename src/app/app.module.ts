@@ -68,8 +68,9 @@ import { TariefService } from './services/parkeertarief.service';
       {path: "veloAll", component: VeloMapAllComponent},
       {path: "veloNear", component: VeloMapNearComponent},
       {path: "tarief", component: TariefViewComponent},
-      {path : "", redirectTo: "404", pathMatch: "full"},
+      {path: "", redirectTo:"home", pathMatch: 'full'},
       {path: "404", component: PageNotFoundComponent},
+      {path : "**", redirectTo: "404"}
     ], {useHash:true}),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCiKlnD4BuX5sIWdAb0VYxZIs4-W6EEQdI'
