@@ -29,13 +29,6 @@ export class WeatherComponent implements OnInit{
       .subscribe(result => this.data = this.MapResult(result))
       //setInterval(this.hi() , 1000);
     }
-    
-
-    hi(){
-      this._svc.getCurrentWeatherAtCoor(this.location.lat, this.location.lng)
-      .subscribe(result => this.data = this.MapResult(result))
-      console.log("update");
-    }
 
     private MapResult(result : IWeatherResult) : IWeather{
       return{

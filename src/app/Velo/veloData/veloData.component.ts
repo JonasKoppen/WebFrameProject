@@ -9,7 +9,7 @@ import { marker, VeloService } from "../../services/velo.service";
     }) 
 export class VeloDataComponent implements OnInit
 {
-    title = 'velo';
+    @Input() title = 'velo';
     @Input() dichtBij: marker[]
     @Input() dichtBij2: marker[]
     constructor(private _svc : VeloService){}
