@@ -22,32 +22,19 @@ import { VeloMapNearComponent } from './Velo/veloMapNear/veloMapNear.component';
 import { WeatherComponent } from './Velo/weather/weather.component';
 //service voor Velo
 import { VeloService } from './services/velo.service';
-<<<<<<< HEAD
-import { HttpClientModule } from '@angular/common/http';
-=======
 import { WeatherService } from './services/weather.service';
 
 
 //Car
->>>>>>> c49ef8633a599c3f69d41b9889b721dab683d466
 import { TariefMapComponent } from './tarief/TariefMap/tariefMap.component';
 import { TariefViewComponent } from './tarief/tariefView.component';
 import { TariefDataComponent } from './tarief/TariefData/tariefData.component';
-<<<<<<< HEAD
-import { VeloComponent } from './jonas/velo.component';
-import { CarpoolService } from './services/carpool.service';
-import { TariefService } from './services/parkeertarief.service';
-import { CarpoolmapComponent } from './carpool/CarpoolMap/carpoolmap.component';
-import { CarpoolComponent } from './carpool/carpool.component';
-import { CarpoolDataComponent } from './carpool/CarpoolData/carpooldata.component';
-=======
 import { CarpoolmapComponent } from './carpool/CarpoolMap/carpoolmap.component';
 import { CarpoolDataComponent } from './carpool/CarpoolData/carpooldata.component';
 import { CarpoolComponent } from './carpool/carpool.component';;
 //service voor Car
 import { CarpoolService } from './services/carpool.service';
 import { TariefService } from './services/parkeertarief.service';
->>>>>>> c49ef8633a599c3f69d41b9889b721dab683d466
 
 
 @NgModule({
@@ -64,18 +51,12 @@ import { TariefService } from './services/parkeertarief.service';
     WeatherComponent,
     //Car
     CarpoolComponent,
-    CarpoolComponent,
+    CarpoolDataComponent,
     CarpoolmapComponent,
     //Tarief
     TariefMapComponent,
     TariefViewComponent,
     TariefDataComponent,
-<<<<<<< HEAD
-    CarpoolDataComponent,
-    CarpoolComponent
-    
-=======
->>>>>>> c49ef8633a599c3f69d41b9889b721dab683d466
   ],
   imports: [
     BrowserModule,
@@ -99,12 +80,8 @@ import { TariefService } from './services/parkeertarief.service';
   providers: [
     VeloService,
     CarpoolService,
-<<<<<<< HEAD
-    TariefService
-=======
     TariefService,
     WeatherService
->>>>>>> c49ef8633a599c3f69d41b9889b721dab683d466
   ],
   bootstrap: [AppComponent]
 })
