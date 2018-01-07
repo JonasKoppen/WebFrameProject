@@ -6,14 +6,15 @@
           [latitude]="lat" 
           [longitude]="lng"
           [zoom] = "zoom"
-          (mapClick)="mapClicked($event)">
-          <agm-marker 
-              [latitude]="selectMarker.lat"
-              [longitude]="selectMarker.lng"
-              [label]="selectMarker.label"
-              [markerDraggable]="selectMarker.draggable"
-              (markerClick)="clickedMarker(selectMarker.label)"
-              (dragEnd)="markerDragEnd(selectMarker, $event)"
+          (mapClick)="mapClicked($event)"
+          (mapRightClick)="mapClickedRight($event)">
+          <agm-marker *ngFor="let marker of selectMarker"
+              [latitude]="marker.lat"
+              [longitude]="marker.lng"
+              [label]="marker.label"
+              [markerDraggable]="marker.draggable"
+              (markerClick)="clickedMarker(marker.label)"
+              (dragEnd)="markerDragEnd(marker, $event)"
               [iconUrl]="icon">
           </agm-marker>
           <agm-marker 
@@ -27,7 +28,18 @@
           </agm-marker>
 
           <agm-marker 
-              *ngFor="let station of stationMarkers"
+              *ngFor="let station of dichtBijA"
+              [latitude]="station.lat"
+              [longitude]="station.lng"
+              [label]="station.label"
+              (markerClick)="clickedMarker(station.label)">
+          
+              <agm-info-window>
+                  <strong>{{station.info}}</strong>
+              </agm-info-window>
+          </agm-marker>
+          <agm-marker 
+              *ngFor="let station of dichtBijB"
               [latitude]="station.lat"
               [longitude]="station.lng"
               [label]="station.label"
@@ -48,7 +60,13 @@
         <br>
         <div class="row-sm">
           <app-veloData 
-          [dichtBij] = "dichtBij"></app-veloData>
+          [dichtBij] = "dichtBijA"
+          [title]="dataTitleA"></app-veloData>
+        </div>
+        <div class="row-sm">
+            <app-veloData 
+            [dichtBij] = "dichtBijB"
+            [title]="dataTitleB"></app-veloData>
         </div>
     </div>
 </div>

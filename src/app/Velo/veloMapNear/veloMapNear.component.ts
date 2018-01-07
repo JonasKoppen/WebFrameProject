@@ -12,13 +12,13 @@ import { element } from 'protractor';
 //Google site: https://developers.google.com/maps/documentation/javascript/importing_data
 
 @Component({
-selector: 'app-veloMap',
-templateUrl: './veloMap.component.html',
-styleUrls: ['./veloMap.component.scss'],
+selector: 'app-veloMapNear',
+templateUrl: './veloMapNear.component.html',
+styleUrls: ['./veloMapNear.component.scss'],
 providers:[VeloService]
 }) 
-export class VeloMapComponent implements OnInit{
-    title = 'veloMap';
+export class VeloMapNearComponent implements OnInit{
+    title = 'veloMapNear';
     lat: number =  51.2194475;
     lng: number =  4.4024643;
     zoom: number = 15;
@@ -26,18 +26,30 @@ export class VeloMapComponent implements OnInit{
     icon2 = "/assets/location3.png";
     collection : IVeloCollection;
     stationMarkers : marker[]
-    selectMarker : marker
+    selectMarker : marker[]
     userLoc : marker
-    dichtBij: marker[]
+    dichtBijA: marker[]
+    dichtBijB: marker[]
     test : IVeloStation[]
+    dataTitleA="Velo stations dichtbij marker A"
+    dataTitleB="Velo stations dichtbij marker B"
 
     constructor(private _svc : VeloService)
     {
-        this.selectMarker = ({
+        this.selectMarker = new Array(2);
+        this.selectMarker[0] = ({
             id : 0,
             lat: 51.215410,
             lng: 4.414489,
             label: "A",
+            draggable: true,
+            info:"place me"
+        })
+        this.selectMarker[1] = ({
+            id : 1,
+            lat: 50.215410,
+            lng: 4.414489,
+            label: "B",
             draggable: true,
             info:"place me"
         })
@@ -63,8 +75,8 @@ export class VeloMapComponent implements OnInit{
                 this.userLoc.lng = position.coords.longitude;
                 this.lat = position.coords.latitude;
                 this.lng = position.coords.longitude;
-                this.selectMarker.lat = position.coords.latitude;
-                this.selectMarker.lng = position.coords.longitude;
+                this.selectMarker[0].lat = position.coords.latitude;
+                this.selectMarker[0].lng = position.coords.longitude;
                 console.log(position.coords); 
                 console.log("hi")
                 console.log(this.lat);
@@ -108,20 +120,25 @@ export class VeloMapComponent implements OnInit{
     }
 
     mapClicked($event: MouseEvent) {
-        this.selectMarker.lat = $event.coords.lat;
-        this.selectMarker.lng = $event.coords.lng;
+        this.selectMarker[0].lat = $event.coords.lat;
+        this.selectMarker[0].lng = $event.coords.lng;
+        this.calcDichtBij();
+    }
+
+    mapClickedRight($event: MouseEvent) {
+        this.selectMarker[1].lat = $event.coords.lat;
+        this.selectMarker[1].lng = $event.coords.lng;
         this.calcDichtBij();
     }
 
     calcDichtBij(){
         var tmpMarkers = this.stationMarkers.slice();
-        this.dichtBij = Array(5);
-        this.dichtBij.sort()
+        this.dichtBijA = new Array(3);
         for(var i =0; i< tmpMarkers.length; i++){
             tmpMarkers[i].distance = geolib.getDistance(
                 {
-                    latitude: this.selectMarker.lat,
-                    longitude: this.selectMarker.lng
+                    latitude: this.selectMarker[0].lat,
+                    longitude: this.selectMarker[0].lng
                 },
                 {
                     latitude: tmpMarkers[i].lat,
@@ -129,7 +146,7 @@ export class VeloMapComponent implements OnInit{
                 }
             )
         }
-        for(var i = 0; i<5; i++){
+        for(var i = 0; i<3; i++){
             var tmp = -1;
             var tmpId = -1;
             for(var j =1; j < tmpMarkers.length;j++){
@@ -138,16 +155,45 @@ export class VeloMapComponent implements OnInit{
                     tmpId = j;
                 }
             }
-            this.dichtBij[i] = tmpMarkers[tmpId]
+            this.dichtBijA[i] = tmpMarkers[tmpId]
             tmpMarkers.splice(tmpId,1)
         }
+        //Desination
+        tmpMarkers = this.stationMarkers.slice();
+        this.dichtBijB = new Array(3);
+        for(var i =0; i< tmpMarkers.length; i++){
+            tmpMarkers[i].distance = geolib.getDistance(
+                {
+                    latitude: this.selectMarker[1].lat,
+                    longitude: this.selectMarker[1].lng
+                },
+                {
+                    latitude: tmpMarkers[i].lat,
+                    longitude: tmpMarkers[i].lng
+                }
+            )
+        }
+        for(var i = 0; i<3; i++){
+            var tmp = -1;
+            var tmpId = -1;
+            for(var j =1; j < tmpMarkers.length;j++){
+                if((tmp > tmpMarkers[j].distance ||tmp == -1) && tmpMarkers[j].distance != -1){
+                    tmp = tmpMarkers[j].distance;
+                    tmpId = j;
+                }
+            }
+            this.dichtBijB[i] = tmpMarkers[tmpId]
+            tmpMarkers.splice(tmpId,1)
+        }
+
         //console.log(this.dichtBij)
     }
 
     markerDragEnd(m: marker, $event: MouseEvent) {
         console.log('dragEnd', m);
-        this.selectMarker.lat = $event.coords.lat;
-        this.selectMarker.lng = $event.coords.lng;
+        m.id
+        this.selectMarker[0].lat = $event.coords.lat;
+        this.selectMarker[0].lng = $event.coords.lng;
         this.calcDichtBij();
       }
 
