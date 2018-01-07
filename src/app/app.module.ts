@@ -10,26 +10,16 @@ import {AgmCoreModule} from '@agm/core'
 import { VeloMapComponent } from './jonas/veloMap/veloMap.component';
 import { VeloService } from './services/velo.service';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
-=======
-import { CarpoolComponent } from './carpool/carpool.component';
-import { CarpoolService } from './services/carpool.service';
->>>>>>> 8269b2aa7a0f138d3ca02e39db0988a8761ae79c
 import { TariefMapComponent } from './tarief/TariefMap/tariefMap.component';
 import { VeloDataComponent } from './jonas/veloData/veloData.component';
 import { TariefViewComponent } from './tarief/tariefView.component';
 import { TariefDataComponent } from './tarief/TariefData/tariefData.component';
-<<<<<<< HEAD
 import { VeloComponent } from './jonas/velo.component';
 import { CarpoolService } from './services/carpool.service';
 import { TariefService } from './services/parkeertarief.service';
 import { CarpoolmapComponent } from './carpool/CarpoolMap/carpoolmap.component';
-import { CarpoolDataComponent } from './carpool/CarpoolData/carpooldata.component';
 import { CarpoolComponent } from './carpool/carpool.component';
-=======
-import { WeatherComponent } from './jonas/weather/weather.component';
-import { WeatherService } from './services/weather.service';
->>>>>>> 8269b2aa7a0f138d3ca02e39db0988a8761ae79c
+import { CarpoolDataComponent } from './carpool/CarpoolData/carpooldata.component';
 
 
 @NgModule({
@@ -46,14 +36,9 @@ import { WeatherService } from './services/weather.service';
     TariefMapComponent,
     TariefViewComponent,
     TariefDataComponent,
-<<<<<<< HEAD
     CarpoolDataComponent,
     CarpoolComponent
     
-=======
-    WeatherComponent
-
->>>>>>> 8269b2aa7a0f138d3ca02e39db0988a8761ae79c
   ],
   imports: [
     BrowserModule,
@@ -76,12 +61,7 @@ import { WeatherService } from './services/weather.service';
   providers: [
     VeloService,
     CarpoolService,
-<<<<<<< HEAD
     TariefService
-=======
-    TariefService,
-    WeatherService
->>>>>>> 8269b2aa7a0f138d3ca02e39db0988a8761ae79c
   ],
   bootstrap: [AppComponent]
 })
