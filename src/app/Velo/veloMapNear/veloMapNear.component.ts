@@ -192,8 +192,8 @@ export class VeloMapNearComponent implements OnInit{
     markerDragEnd(m: marker, $event: MouseEvent) {
         console.log('dragEnd', m);
         m.id
-        this.selectMarker[0].lat = $event.coords.lat;
-        this.selectMarker[0].lng = $event.coords.lng;
+        this.selectMarker[m.id].lat = $event.coords.lat;
+        this.selectMarker[m.id].lng = $event.coords.lng;
         this.calcDichtBij();
       }
 
