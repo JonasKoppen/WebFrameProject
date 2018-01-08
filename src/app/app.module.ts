@@ -51,7 +51,7 @@ import { TariefService } from './services/parkeertarief.service';
     WeatherComponent,
     //Car
     CarpoolComponent,
-    CarpoolComponent,
+    CarpoolDataComponent,
     CarpoolmapComponent,
     //Tarief
     TariefMapComponent,
